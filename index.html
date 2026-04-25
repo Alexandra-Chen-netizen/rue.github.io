@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>陈则儒 · Alexandra Chen | 内容创意 × AI增长</title>
+  <meta name="description" content="Alexandra Chen 个人网站：内容创作、活动策划、AIGC 创意传播、数据驱动增长。整合 AI 工具实现高效变现与品牌影响。" />
+  <style>
+    /* ========== 原有完整样式，未作任何修改 ========== */
+    :root{
+      --bg:#f5f3ef;
+      --panel:#fffdf8;
+      --panel-2:#f0ebe4;
+      --ink:#151515;
+      --muted:#5e5a56;
+      --line:rgba(21,21,21,.12);
+      --line-strong:rgba(21,21,21,.18);
+      --accent:#7b2cff;
+      --accent-2:#0ea5e9;
+      --accent-3:#18b47b;
+      --shadow:0 20px 60px rgba(29,18,64,.08);
+      --radius:22px;
+      --radius-sm:14px;
+      --max:1260px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      background:
+        radial-gradient(circle at 10% 10%, rgba(123,44,255,.08), transparent 30%),
+        radial-gradient(circle at 90% 0%, rgba(14,165,233,.10), transparent 24%),
+        radial-gradient(circle at 80% 85%, rgba(24,180,123,.08), transparent 25%),
+        linear-gradient(180deg, #faf8f4 0%, #f4f1eb 100%);
+      color:var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    ::selection{background:rgba(123,44,255,.18)}
+    .page{
+      width:min(var(--max), calc(100% - 48px));
+      margin:0 auto;
+      padding:28px 0 56px;
+    }
+    .topline{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:6px 2px 22px;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .topline .mark{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--ink);
+      font-weight:600;
+      letter-spacing:.04em;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 0 0 6px rgba(123,44,255,.08);
+    }
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.36)),
+        linear-gradient(135deg, rgba(123,44,255,.10), transparent 35%, rgba(14,165,233,.08) 72%, rgba(24,180,123,.07));
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      padding:38px 34px 30px;
+      display:grid;
+      grid-template-columns: 1.3fr .92fr;
+      gap:24px;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:auto -8% 12% auto;
+      width:34vw;
+      max-width:470px;
+      height:34vw;
+      max-height:470px;
+      background:
+        radial-gradient(circle at 32% 32%, rgba(123,44,255,.18), transparent 34%),
+        radial-gradient(circle at 68% 52%, rgba(14,165,233,.16), transparent 30%),
+        radial-gradient(circle at 52% 70%, rgba(24,180,123,.12), transparent 26%);
+      filter:blur(8px);
+      pointer-events:none;
+      transform:rotate(-10deg);
+    }
+    .hero-main{
+      position:relative;
+      z-index:1;
+      min-width:0;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.7);
+      font-size:13px;
+      color:var(--muted);
+      letter-spacing:.02em;
+      margin-bottom:18px;
+      width:fit-content;
+      backdrop-filter: blur(10px);
+    }
+    .eyebrow b{
+      color:var(--ink);
+      font-weight:600;
+    }
+    .name{
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size:clamp(52px, 7vw, 92px);
+      line-height:.92;
+      letter-spacing:-.05em;
+      margin:0 0 18px;
+      max-width:8.6ch;
+      font-weight:700;
+    }
+    .role{
+      font-size:clamp(18px, 2.2vw, 23px);
+      line-height:1.45;
+      color:var(--ink);
+      max-width:820px;
+      margin:0 0 18px;
+    }
+    .value{
+      position:relative;
+      margin:0 0 24px;
+      max-width:780px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.72;
+      padding-left:18px;
+      border-left:2px solid rgba(123,44,255,.22);
+    }
+    .proofs{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:12px;
+      margin:24px 0 26px;
+    }
+    .proof{
+      background:rgba(255,255,255,.7);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px 16px 15px;
+      backdrop-filter: blur(10px);
+      min-height:92px;
+    }
+    .proof .k{
+      display:block;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+    .proof .v{
+      display:block;
+      font-size:18px;
+      line-height:1.22;
+      color:var(--ink);
+      font-weight:650;
+    }
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid var(--line-strong);
+      font-size:15px;
+      font-weight:600;
+      letter-spacing:.01em;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      will-change:transform;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{
+      color:#fff;
+      background:linear-gradient(135deg, #111 0%, #3c196a 40%, #7b2cff 100%);
+      box-shadow:0 14px 30px rgba(123,44,255,.18);
+      border-color:transparent;
+    }
+    .btn.secondary{
+      background:rgba(255,255,255,.75);
+      color:var(--ink);
+    }
+    .btn .arrow{
+      font-size:16px;
+      line-height:1;
+      transform:translateY(-1px);
+    }
+    .hero-side{
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      justify-content:space-between;
+      min-width:0;
+    }
+    .profile-card, .signal-card{
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      backdrop-filter: blur(12px);
+    }
+    .profile-card{
+      position:relative;
+      overflow:hidden;
+      min-height:240px;
+    }
+    .profile-card:after{
+      content:"";
+      position:absolute;
+      right:-56px;
+      bottom:-56px;
+      width:190px;
+      height:190px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(123,44,255,.24), transparent 38%),
+        radial-gradient(circle at 62% 58%, rgba(14,165,233,.22), transparent 35%);
+      filter:blur(4px);
+    }
+    .profile-title{
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+    .profile-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+    .metric{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px 14px 13px;
+      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.55));
+    }
+    .metric .num{
+      font-family:"Georgia","Times New Roman",serif;
+      font-size:30px;
+      line-height:1;
+      font-weight:700;
+      letter-spacing:-.04em;
+      color:var(--ink);
+      display:block;
+      margin-bottom:6px;
+    }
+    .metric .txt{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+    .signal-card{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .signal-row{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 0;
+      border-top:1px solid var(--line);
+    }
+    .signal-row:first-of-type{border-top:none;padding-top:0}
+    .signal-row .l{
+      font-size:13px;
+      color:var(--muted);
+      flex:1;
+    }
+    .signal-row .r{
+      font-size:14px;
+      color:var(--ink);
+      font-weight:600;
+      text-align:right;
+      max-width:56%;
+    }
+    .section{
+      margin-top:24px;
+      border-radius:30px;
+    }
+    .strip{
+      display:grid;
+      grid-template-columns:1.15fr 1fr 1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    .strip-item{
+      position:relative;
+      background:rgba(255,255,255,.62);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px 18px 16px;
+      min-height:112px;
+      overflow:hidden;
+    }
+    .strip-item:before{
+      content:"";
+      position:absolute;
+      left:0;top:0;right:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+      opacity:.9;
+    }
+    .strip-item .label{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      margin-top:3px;
+      margin-bottom:14px;
+    }
+    .strip-item .headline{
+      font-size:18px;
+      font-weight:650;
+      line-height:1.25;
+      color:var(--ink);
+    }
+    .strip-item .sub{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+    .block{
+      margin-top:26px;
+      padding:0;
+    }
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:16px;
+      margin:28px 2px 16px;
+    }
+    .section-head h2{
+      font-size:15px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:700;
+      color:var(--muted);
+      margin:0;
+    }
+    .section-head p{
+      margin:0;
+      max-width:640px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .work-grid{
+      display:grid;
+      grid-template-columns: 1.18fr .92fr .9fr;
+      gap:14px;
+    }
+    .work-card{
+      background:rgba(255,255,255,.76);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+      min-height:320px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 10px 30px rgba(14,14,14,.04);
+    }
+    .work-card:nth-child(1){
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(245,239,255,.48)),
+        rgba(255,255,255,.78);
+    }
+    .work-card:nth-child(2){
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.84), rgba(236,249,255,.5)),
+        rgba(255,255,255,.78);
+    }
+    .work-card:nth-child(3){
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.84), rgba(239,255,248,.54)),
+        rgba(255,255,255,.78);
+    }
+    .work-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+      margin-bottom:18px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:12px;
+      color:var(--muted);
+      background:rgba(255,255,255,.64);
+      width:fit-content;
+      margin-bottom:12px;
+    }
+    .work-title{
+      font-family:"Georgia","Times New Roman",serif;
+      font-weight:700;
+      letter-spacing:-.03em;
+      font-size:clamp(24px, 2.2vw, 34px);
+      line-height:1.05;
+      margin:0 0 12px;
+      max-width:12ch;
+    }
+    .work-desc{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.75;
+      margin:0;
+      max-width:42ch;
+    }
+    .work-meta{
+      margin-top:18px;
+      display:grid;
+      gap:10px;
+    }
+    .meta-row{
+      display:grid;
+      grid-template-columns:84px 1fr;
+      gap:12px;
+      align-items:start;
+      padding-top:10px;
+      border-top:1px solid var(--line);
+      font-size:14px;
+    }
+    .meta-row:first-child{border-top:none;padding-top:0}
+    .meta-row .m{
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+    .meta-row .v{
+      color:var(--ink);
+      font-weight:600;
+      line-height:1.5;
+    }
+    .badge-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:16px;
+    }
+    .badge{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.74);
+      border:1px solid var(--line);
+      color:var(--muted);
+    }
+    .experience{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:14px;
+      margin-top:18px;
+    }
+    .timeline, .panel{
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 10px 28px rgba(14,14,14,.04);
+    }
+    .timeline{
+      position:relative;
+      overflow:hidden;
+    }
+    .timeline:before{
+      content:"";
+      position:absolute;
+      left:22px;
+      top:22px;
+      bottom:22px;
+      width:2px;
+      background:linear-gradient(180deg, rgba(123,44,255,.35), rgba(14,165,233,.25), rgba(24,180,123,.28));
+    }
+    .job{
+      position:relative;
+      padding-left:28px;
+      margin-bottom:20px;
+    }
+    .job:last-child{margin-bottom:0}
+    .job:before{
+      content:"";
+      position:absolute;
+      left:-6px;
+      top:6px;
+      width:12px;height:12px;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 0 0 6px rgba(123,44,255,.08);
+    }
+    .job .when{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .job .title{
+      font-size:18px;
+      font-weight:700;
+      margin:0 0 8px;
+      line-height:1.25;
+    }
+    .job .org{
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:10px;
+    }
+    .job .copy{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.72;
+      margin:0;
+    }
+    .panel{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .panel h3{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.03em;
+      font-family:"Georgia","Times New Roman",serif;
+    }
+    .panel .cols{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.62));
+    }
+    .mini .t{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+    .mini .c{
+      font-size:14px;
+      line-height:1.65;
+      color:var(--ink);
+      font-weight:600;
+    }
+    .about-contact{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:14px;
+      margin-top:18px;
+    }
+    .about, .contact{
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+    }
+    .about p, .contact p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.84;
+    }
+    .about p strong{color:var(--ink)}
+    .contact .links{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+    .contact-card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px 14px 13px;
+      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.62));
+    }
+    .contact-card .l{
+      display:block;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+    .contact-card .r{
+      font-size:16px;
+      font-weight:650;
+      color:var(--ink);
+      word-break:break-word;
+    }
+    .footer-note{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      padding:0 4px;
+    }
+    .split-word{
+      display:inline-block;
+      white-space:nowrap;
+    }
+    @media (max-width: 1080px){
+      .hero,
+      .work-grid,
+      .experience,
+      .about-contact,
+      .strip{
+        grid-template-columns:1fr;
+      }
+      .hero{
+        padding:28px 20px 20px;
+      }
+      .name{max-width:unset}
+      .proofs{grid-template-columns:1fr 1fr}
+      .profile-card{min-height:auto}
+      .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .footer-note{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+    @media (max-width: 720px){
+      .page{width:min(100% - 24px, var(--max)); padding-top:14px}
+      .topline{padding-bottom:14px}
+      .proofs,
+      .panel .cols{
+        grid-template-columns:1fr;
+      }
+      .strip-item,
+      .work-card,
+      .timeline,
+      .panel,
+      .about,
+      .contact{
+        border-radius:20px;
+      }
+      .hero{
+        border-radius:24px;
+      }
+      .name{
+        font-size:clamp(40px, 16vw, 56px);
+      }
+      .role{font-size:17px}
+      .value{font-size:15px}
+      .btn{width:100%}
+      .actions{flex-direction:column;align-items:stretch}
+      .meta-row{grid-template-columns:1fr}
+      .signal-row{flex-direction:column}
+      .signal-row .r{text-align:left;max-width:none}
+      .topline{
+        gap:10px;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+    .neon-line{
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(123,44,255,.36), rgba(14,165,233,.25), rgba(24,180,123,.26), transparent);
+      margin:20px 0 0;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 顶栏 -->
+  <div class="topline">
+    <div class="mark"><span class="dot"></span> Alexandra Chen · Portfolio</div>
+    <div>内容 · 活动 · AIGC · 增长</div>
+  </div>
+
+  <!-- HERO 区域 -->
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow"><b>Open to collaboration</b> · 内容创作 / 活动策划 / AIGC 变现</div>
+      <h1 class="name">陈则儒<br/>Alexandra Chen</h1>
+      <p class="role">市场营销 × AI增长策略 · 复合型创作者，擅长将活动策划、社媒增长与 AIGC 创意整合为可量化结果。</p>
+      <p class="value">从0到1主导20+校园大型活动，独立运营自媒体实现50w+爆款与30%粉丝增长；以AIGC一等奖项目验证“创意+技术”的变现能力。会计学背景赋予结构化思维，数据驱动决策。</p>
+      <div class="proofs">
+        <div class="proof"><span class="k">🏆 AIGC Champion</span><span class="v">一等奖 (1/37)<br/>160+ prompt迭代</span></div>
+        <div class="proof"><span class="k">Impact</span><span class="v">20+ 大型活动<br/>5000+ 观众</span></div>
+        <div class="proof"><span class="k">Growth</span><span class="v">50w+ 阅读 · 30% 粉丝增长<br/>AI提效40%</span></div>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="#contact"><span>联系合作</span><span class="arrow">↗</span></a>
+        <a class="btn secondary" href="#selected-work"><span>查看精选成果</span><span class="arrow">↓</span></a>
+      </div>
+    </div>
+    <aside class="hero-side">
+      <div class="profile-card">
+        <div class="profile-title">Quick Profile</div>
+        <div class="profile-grid">
+          <div class="metric"><span class="num">4.5</span><span class="txt">GPA / 5.0<br/>杭电 会计学本科</span></div>
+          <div class="metric"><span class="num">4 / 37</span><span class="txt">专业排名<br/>前11%</span></div>
+          <div class="metric"><span class="num">9</span><span class="txt">ACCA 通过门数<br/>财务与数据基础</span></div>
+          <div class="metric"><span class="num">50%</span><span class="txt">互动率峰值<br/>内容传播能力</span></div>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="profile-title">What I bring</div>
+        <div class="signal-row"><div class="l">擅长领域</div><div class="r">活动策划 · 内容创作 · 社媒增长 · AIGC 创意 · 用户洞察</div></div>
+        <div class="signal-row"><div class="l">工具链</div><div class="r">Excel / SQL / GA4 / Canva · AI图像/视频 (Midjourney/Runway) · Adobe 基础</div></div>
+        <div class="signal-row"><div class="l">语言</div><div class="r">CET-6 578 / IELTS 6.5 · 普通话二甲</div></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- 快捷数据条 -->
+  <section class="section strip" aria-label="proof strip">
+    <div class="strip-item"><div class="label">Education</div><div class="headline">2023–2027 会计学本科</div><div class="sub">杭电 · GPA 4.5/5.0 · 排名 4/37 · ACCA 9/13</div></div>
+    <div class="strip-item"><div class="label">Results</div><div class="headline">5000+ 观众 · 50w+ 阅读</div><div class="sub">线下活动与线上内容双轮驱动，传播可量化</div></div>
+    <div class="strip-item"><div class="label">AIGC</div><div class="headline">一等奖 · 160+ prompt</div><div class="sub">生物朋克世界观，动态分镜视频，48h爆款传播</div></div>
+    <div class="strip-item"><div class="label">Availability</div><div class="headline">实习 · 项目协作 · 内容共创 · AIGC提案</div><div class="sub">可远程/线下 · 立即到岗</div></div>
+  </section>
+
+  <!-- 精选项目 / Selected Work -->
+  <section class="block" id="selected-work">
+    <div class="section-head"><h2>Featured Projects / Selected Work</h2><p>整合创意、AI与数据，产出可量化的商业价值</p></div>
+    <div class="work-grid">
+      <article class="work-card">
+        <div><div class="pill">Campus Events · Creative Direction</div><h3 class="work-title">校艺术团导演部负责人</h3><p class="work-desc">0-1主导20+校园大型活动（迎新晚会、舞蹈专场），独立完成创意构思、全流程统筹，累计触达50000+人次，活动参与率提升35%。</p></div>
+        <div class="work-meta"><div class="meta-row"><div class="m">Context</div><div class="v">在资源有限的校园环境中打造高沉浸感品牌活动</div></div><div class="meta-row"><div class="m">Ownership</div><div class="v">创意策划 · 故事线 · 舞美统筹 · 15人跨职能团队管理 · 公众号&短视频内容</div></div><div class="meta-row"><div class="m">Result</div><div class="v">5000+ 现场观众 · 月均曝光增长40% · 推文打开率25% · 互动意愿提升50%</div></div></div>
+      </article>
+      <article class="work-card">
+        <div><div class="pill">Self-Media · AI Growth Hacking</div><h3 class="work-title">自媒体内容创作者</h3><p class="work-desc">独立运营社交媒体账号，运用AI工具辅助内容生成与优化，单篇图文阅读量超50万，平均互动率超50%。</p></div>
+        <div class="work-meta"><div class="meta-row"><div class="m">Tactics</div><div class="v">用户画像分析 · 算法适配发布时间 · AI辅助文案/视觉</div></div><div class="meta-row"><div class="m">Ownership</div><div class="v">全链路内容创作 · 数据复盘 · 迭代策略</div></div><div class="meta-row"><div class="m">Result</div><div class="v">6个月粉丝增长30% · 创作效率提升40% · 爆款率行业前列</div></div></div>
+      </article>
+      <article class="work-card">
+        <div><div class="pill">AIGC · Worldbuilding & Viral Campaign</div><h3 class="work-title">AIGC创新大赛一等奖</h3><p class="work-desc">切中生物朋克暗黑美学需求，0-1打造游戏世界观设定集；160+组prompt迭代，生成游戏级质感画面；AI动态分镜视频零台词叙事，48h自发转发200+次。</p></div>
+        <div class="work-meta"><div class="meta-row"><div class="m">Challenge</div><div class="v">完全依靠AI视觉与叙事，无真人配音/文案</div></div><div class="meta-row"><div class="m">Execution</div><div class="v">Midjourney/Stable Diffusion · Runway动态分镜 · 极致风格化</div></div><div class="meta-row"><div class="m">Result</div><div class="v">冠军 (1/37) · 传播溢出到玩家社群，建立个人 IP 影响力</div></div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 经历 & 能力 -->
+  <section class="block">
+    <div class="section-head"><h2>Experience & Skills</h2><p>创意×执行×结果，跨领域落地能力</p></div>
+    <div class="experience">
+      <div class="timeline">
+        <div class="job"><div class="when">2023.09 — 至今</div><h3 class="title">校艺术团 · 导演部负责人</h3><div class="org">策划/创意/团队管理</div><p class="copy">主导大型活动0-1落地，用户增长策略，内容矩阵搭建，跨部门协作。</p></div>
+        <div class="job"><div class="when">2024.01 — 至今</div><h3 class="title">自媒体 · 内容创作者 (个人IP)</h3><div class="org">社媒运营/AI工具/数据分析</div><p class="copy">独立创作图文短视频，运用AI提效40%，数据驱动选题，爆款率稳定。</p></div>
+        <div class="job"><div class="when">2024.03 — 2025.06</div><h3 class="title">校团委 · 助理协调员</h3><div class="org">活动统筹/跨部门协作</div><p class="copy">协调5+部门，优化流程提升效率25%，建立数据复盘机制。</p></div>
+        <div class="job"><div class="when">2025.01 — 2025.02</div><h3 class="title">中国农业银行 · 大堂经理</h3><div class="org">客户服务/调研支持</div><p class="copy">服务5000+客户，参与支付结算调研，支撑年度业务报告。</p></div>
+        <div class="job"><div class="when">2024.06 — 2024.08</div><h3 class="title">乐清市宏诚会计事务所 · 会计助理</h3><div class="org">总账/财务报告</div><p class="copy">协助月度结账与报表编制，强化数据敏感性与异常排查能力。</p></div>
+      </div>
+      <div class="panel">
+        <h3>Core Capabilities</h3>
+        <div class="cols">
+          <div class="mini"><div class="t">Marketing</div><div class="c">活动策划、内容创作、社媒运营、用户洞察、SEO/SEM基础</div></div>
+          <div class="mini"><div class="t">Analytics</div><div class="c">Excel (VLOOKUP/透视表)、SQL、GA4、数据可视化</div></div>
+          <div class="mini"><div class="t">Creative Tools</div><div class="c">Canva、AI绘图/视频 (Midjourney/Runway/可灵/即梦)、Adobe基础、墨刀、TREASOLO、Vibe Coding</div></div>
+          <div class="mini"><div class="t">Soft Skills</div><div class="c">跨部门协作、Storytelling、项目管理、快速学习、用户共情</div></div>
+        </div>
+        <div class="badge-line"><span class="badge">校一等奖学金</span><span class="badge">校二等奖学金</span><span class="badge">优秀学生干部</span><span class="badge">优秀团员</span><span class="badge">学生工作奖 ×2</span><span class="badge">文艺工作奖 ×2</span><span class="badge">AIGC 一等奖</span></div>
+        <div class="neon-line"></div>
+        <div class="signal-row" style="padding-top:0;border-top:none;"><div class="l">项目偏好</div><div class="r">内容传播 · 活动落地 · AIGC 创意 · 增长策略 · 跨部门协作</div></div>
+        <div class="signal-row"><div class="l">合作方式</div><div class="r">实习 / 项目协作 / 商务支持 / 品牌活动 / 内容共创</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- English Resume 板块 (新增，丰富页面) -->
+  <section class="block" style="margin-top: 2rem;">
+    <div class="section-head"><h2>English Resume</h2><p>Professional experience & skills in global context</p></div>
+    <div class="about-contact" style="grid-template-columns: 1fr 1fr;">
+      <div class="about" style="background:rgba(255,255,255,.72); backdrop-filter: blur(12px);">
+        <p style="margin-bottom: 1rem;"><strong>Alexandra Chen</strong><br/>Marketing & AI Growth Creator</p>
+        <p><strong>Education</strong><br/>Hangzhou Dianzi University – B.A. Accounting (2023–2027)<br/>GPA 4.5/5.0 · Rank 4/37 · ACCA 9/13</p>
+        <p style="margin-top: 1rem;"><strong>Selected Achievements</strong><br/>🏆 AIGC Innovation Competition – 1st Prize (1/37)<br/>📈 500K+ reads on a single post · 30% follower growth in 6 months<br/>🎤 20+ campus events, 5000+ attendees, +35% participation</p>
+      </div>
+      <div class="contact" style="background:rgba(255,255,255,.72); backdrop-filter: blur(12px);">
+        <p><strong>Core Skills</strong><br/>Event Planning · Content Creation · Social Media Growth · AIGC Tools (Midjourney/Runway) · Data Analytics (Excel/SQL/GA4) · Cross-functional Collaboration</p>
+        <p style="margin-top: 1rem;"><strong>Work Experience (Highlight)</strong><br/>• University Art Troupe Director: led 20+ events, 15-person team<br/>• Self-Media Creator: AI-driven content, 30% growth in 3 months<br/>• Bank Lobby Manager: served 5000+ clients, process optimization</p>
+        <p style="margin-top: 1rem;"><strong>Contact</strong><br/>📧 1638560849@qq.com &nbsp;|&nbsp; 📞 +86 13806865691<br/>🌐 <a href="https://alexandra-chen-netizen.github.io/alexandra.github.io/" target="_blank" style="text-decoration: underline;">Portfolio</a></p>
+        <div style="margin-top: 0.8rem;"><a href="#" class="btn secondary" style="padding: 6px 16px;">Download Full CV (PDF)</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Contact (中文) -->
+  <section class="block">
+    <div class="section-head"><h2>About & Connect</h2><p>会计×创意×AI，将想法落地为增长</p></div>
+    <div class="about-contact">
+      <div class="about"><p>我在会计学训练中建立了<strong>结构化思考、数据敏感度和严谨执行</strong>的底层能力；在校园活动、自媒体与 AIGC 项目中，持续强化<strong>创意表达、传播意识和团队协作</strong>。我的优势不是单点技能，而是把想法推进成可量化的结果——从主题、脚本、物料到发布、复盘、增长，我都愿意亲自参与并持续优化。如果你需要一个既能理解内容、又能看懂数据，还能把事情真正推进的人，这里会是一个合适的起点。</p></div>
+      <div class="contact"><p>欢迎联系我用于求职、合作、校园项目、品牌活动、内容制作或 AIGC 创意提案。</p><div class="links"><div class="contact-card"><span class="l">Email</span><span class="r">1638560849@qq.com</span></div><div class="contact-card"><span class="l">Phone</span><span class="r">+86 13806865691</span></div><div class="contact-card"><span class="l">Location</span><span class="r">China · 可远程沟通 / 可合作</span></div></div></div>
+    </div>
+  </section>
+
+  <div class="footer-note"><div>Hangzhou Dianzi University · Bachelor of Accounting · Sep 2023 – Jun 2027</div><div>Built with precision · AI-enhanced portfolio</div></div>
+</div>
+</body>
+</html>
