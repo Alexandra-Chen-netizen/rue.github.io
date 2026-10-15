@@ -1,844 +1,2025 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>陈则儒 · Alexandra Chen | 内容创意 × AI增长</title>
-  <meta name="description" content="Alexandra Chen 个人网站：内容创作、活动策划、AIGC 创意传播、数据驱动增长。整合 AI 工具实现高效变现与品牌影响。" />
-  <style>
-    /* ========== 原有完整样式，未作任何修改 ========== */
-    :root{
-      --bg:#f5f3ef;
-      --panel:#fffdf8;
-      --panel-2:#f0ebe4;
-      --ink:#151515;
-      --muted:#5e5a56;
-      --line:rgba(21,21,21,.12);
-      --line-strong:rgba(21,21,21,.18);
-      --accent:#7b2cff;
-      --accent-2:#0ea5e9;
-      --accent-3:#18b47b;
-      --shadow:0 20px 60px rgba(29,18,64,.08);
-      --radius:22px;
-      --radius-sm:14px;
-      --max:1260px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      background:
-        radial-gradient(circle at 10% 10%, rgba(123,44,255,.08), transparent 30%),
-        radial-gradient(circle at 90% 0%, rgba(14,165,233,.10), transparent 24%),
-        radial-gradient(circle at 80% 85%, rgba(24,180,123,.08), transparent 25%),
-        linear-gradient(180deg, #faf8f4 0%, #f4f1eb 100%);
-      color:var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      line-height:1.5;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    ::selection{background:rgba(123,44,255,.18)}
-    .page{
-      width:min(var(--max), calc(100% - 48px));
-      margin:0 auto;
-      padding:28px 0 56px;
-    }
-    .topline{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      padding:6px 2px 22px;
-      color:var(--muted);
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .topline .mark{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:var(--ink);
-      font-weight:600;
-      letter-spacing:.04em;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:50%;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      box-shadow:0 0 0 6px rgba(123,44,255,.08);
-    }
-    .hero{
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.36)),
-        linear-gradient(135deg, rgba(123,44,255,.10), transparent 35%, rgba(14,165,233,.08) 72%, rgba(24,180,123,.07));
-      border-radius:32px;
-      box-shadow:var(--shadow);
-      padding:38px 34px 30px;
-      display:grid;
-      grid-template-columns: 1.3fr .92fr;
-      gap:24px;
-    }
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:auto -8% 12% auto;
-      width:34vw;
-      max-width:470px;
-      height:34vw;
-      max-height:470px;
-      background:
-        radial-gradient(circle at 32% 32%, rgba(123,44,255,.18), transparent 34%),
-        radial-gradient(circle at 68% 52%, rgba(14,165,233,.16), transparent 30%),
-        radial-gradient(circle at 52% 70%, rgba(24,180,123,.12), transparent 26%);
-      filter:blur(8px);
-      pointer-events:none;
-      transform:rotate(-10deg);
-    }
-    .hero-main{
-      position:relative;
-      z-index:1;
-      min-width:0;
-    }
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.7);
-      font-size:13px;
-      color:var(--muted);
-      letter-spacing:.02em;
-      margin-bottom:18px;
-      width:fit-content;
-      backdrop-filter: blur(10px);
-    }
-    .eyebrow b{
-      color:var(--ink);
-      font-weight:600;
-    }
-    .name{
-      font-family: "Georgia", "Times New Roman", serif;
-      font-size:clamp(52px, 7vw, 92px);
-      line-height:.92;
-      letter-spacing:-.05em;
-      margin:0 0 18px;
-      max-width:8.6ch;
-      font-weight:700;
-    }
-    .role{
-      font-size:clamp(18px, 2.2vw, 23px);
-      line-height:1.45;
-      color:var(--ink);
-      max-width:820px;
-      margin:0 0 18px;
-    }
-    .value{
-      position:relative;
-      margin:0 0 24px;
-      max-width:780px;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.72;
-      padding-left:18px;
-      border-left:2px solid rgba(123,44,255,.22);
-    }
-    .proofs{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:12px;
-      margin:24px 0 26px;
-    }
-    .proof{
-      background:rgba(255,255,255,.7);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:16px 16px 15px;
-      backdrop-filter: blur(10px);
-      min-height:92px;
-    }
-    .proof .k{
-      display:block;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--muted);
-      margin-bottom:10px;
-    }
-    .proof .v{
-      display:block;
-      font-size:18px;
-      line-height:1.22;
-      color:var(--ink);
-      font-weight:650;
-    }
-    .actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top:12px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      height:48px;
-      padding:0 18px;
-      border-radius:999px;
-      border:1px solid var(--line-strong);
-      font-size:15px;
-      font-weight:600;
-      letter-spacing:.01em;
-      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
-      will-change:transform;
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{
-      color:#fff;
-      background:linear-gradient(135deg, #111 0%, #3c196a 40%, #7b2cff 100%);
-      box-shadow:0 14px 30px rgba(123,44,255,.18);
-      border-color:transparent;
-    }
-    .btn.secondary{
-      background:rgba(255,255,255,.75);
-      color:var(--ink);
-    }
-    .btn .arrow{
-      font-size:16px;
-      line-height:1;
-      transform:translateY(-1px);
-    }
-    .hero-side{
-      position:relative;
-      z-index:1;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      justify-content:space-between;
-      min-width:0;
-    }
-    .profile-card, .signal-card{
-      background:rgba(255,255,255,.72);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:20px;
-      backdrop-filter: blur(12px);
-    }
-    .profile-card{
-      position:relative;
-      overflow:hidden;
-      min-height:240px;
-    }
-    .profile-card:after{
-      content:"";
-      position:absolute;
-      right:-56px;
-      bottom:-56px;
-      width:190px;
-      height:190px;
-      border-radius:50%;
-      background:
-        radial-gradient(circle at 35% 35%, rgba(123,44,255,.24), transparent 38%),
-        radial-gradient(circle at 62% 58%, rgba(14,165,233,.22), transparent 35%);
-      filter:blur(4px);
-    }
-    .profile-title{
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:var(--muted);
-      margin-bottom:14px;
-    }
-    .profile-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      position:relative;
-      z-index:1;
-    }
-    .metric{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px 14px 13px;
-      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.55));
-    }
-    .metric .num{
-      font-family:"Georgia","Times New Roman",serif;
-      font-size:30px;
-      line-height:1;
-      font-weight:700;
-      letter-spacing:-.04em;
-      color:var(--ink);
-      display:block;
-      margin-bottom:6px;
-    }
-    .metric .txt{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.45;
-    }
-    .signal-card{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .signal-row{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      padding:12px 0;
-      border-top:1px solid var(--line);
-    }
-    .signal-row:first-of-type{border-top:none;padding-top:0}
-    .signal-row .l{
-      font-size:13px;
-      color:var(--muted);
-      flex:1;
-    }
-    .signal-row .r{
-      font-size:14px;
-      color:var(--ink);
-      font-weight:600;
-      text-align:right;
-      max-width:56%;
-    }
-    .section{
-      margin-top:24px;
-      border-radius:30px;
-    }
-    .strip{
-      display:grid;
-      grid-template-columns:1.15fr 1fr 1fr 1fr;
-      gap:12px;
-      margin-top:18px;
-    }
-    .strip-item{
-      position:relative;
-      background:rgba(255,255,255,.62);
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:18px 18px 16px;
-      min-height:112px;
-      overflow:hidden;
-    }
-    .strip-item:before{
-      content:"";
-      position:absolute;
-      left:0;top:0;right:0;
-      height:3px;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
-      opacity:.9;
-    }
-    .strip-item .label{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--muted);
-      margin-top:3px;
-      margin-bottom:14px;
-    }
-    .strip-item .headline{
-      font-size:18px;
-      font-weight:650;
-      line-height:1.25;
-      color:var(--ink);
-    }
-    .strip-item .sub{
-      margin-top:8px;
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.5;
-    }
-    .block{
-      margin-top:26px;
-      padding:0;
-    }
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:16px;
-      margin:28px 2px 16px;
-    }
-    .section-head h2{
-      font-size:15px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-weight:700;
-      color:var(--muted);
-      margin:0;
-    }
-    .section-head p{
-      margin:0;
-      max-width:640px;
-      color:var(--muted);
-      font-size:14px;
-    }
-    .work-grid{
-      display:grid;
-      grid-template-columns: 1.18fr .92fr .9fr;
-      gap:14px;
-    }
-    .work-card{
-      background:rgba(255,255,255,.76);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:22px;
-      min-height:320px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      overflow:hidden;
-      position:relative;
-      box-shadow:0 10px 30px rgba(14,14,14,.04);
-    }
-    .work-card:nth-child(1){
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.82), rgba(245,239,255,.48)),
-        rgba(255,255,255,.78);
-    }
-    .work-card:nth-child(2){
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.84), rgba(236,249,255,.5)),
-        rgba(255,255,255,.78);
-    }
-    .work-card:nth-child(3){
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.84), rgba(239,255,248,.54)),
-        rgba(255,255,255,.78);
-    }
-    .work-top{
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      align-items:flex-start;
-      margin-bottom:18px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:7px 10px;
-      font-size:12px;
-      color:var(--muted);
-      background:rgba(255,255,255,.64);
-      width:fit-content;
-      margin-bottom:12px;
-    }
-    .work-title{
-      font-family:"Georgia","Times New Roman",serif;
-      font-weight:700;
-      letter-spacing:-.03em;
-      font-size:clamp(24px, 2.2vw, 34px);
-      line-height:1.05;
-      margin:0 0 12px;
-      max-width:12ch;
-    }
-    .work-desc{
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.75;
-      margin:0;
-      max-width:42ch;
-    }
-    .work-meta{
-      margin-top:18px;
-      display:grid;
-      gap:10px;
-    }
-    .meta-row{
-      display:grid;
-      grid-template-columns:84px 1fr;
-      gap:12px;
-      align-items:start;
-      padding-top:10px;
-      border-top:1px solid var(--line);
-      font-size:14px;
-    }
-    .meta-row:first-child{border-top:none;padding-top:0}
-    .meta-row .m{
-      color:var(--muted);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-    }
-    .meta-row .v{
-      color:var(--ink);
-      font-weight:600;
-      line-height:1.5;
-    }
-    .badge-line{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:16px;
-    }
-    .badge{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.74);
-      border:1px solid var(--line);
-      color:var(--muted);
-    }
-    .experience{
-      display:grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap:14px;
-      margin-top:18px;
-    }
-    .timeline, .panel{
-      background:rgba(255,255,255,.72);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:22px;
-      box-shadow:0 10px 28px rgba(14,14,14,.04);
-    }
-    .timeline{
-      position:relative;
-      overflow:hidden;
-    }
-    .timeline:before{
-      content:"";
-      position:absolute;
-      left:22px;
-      top:22px;
-      bottom:22px;
-      width:2px;
-      background:linear-gradient(180deg, rgba(123,44,255,.35), rgba(14,165,233,.25), rgba(24,180,123,.28));
-    }
-    .job{
-      position:relative;
-      padding-left:28px;
-      margin-bottom:20px;
-    }
-    .job:last-child{margin-bottom:0}
-    .job:before{
-      content:"";
-      position:absolute;
-      left:-6px;
-      top:6px;
-      width:12px;height:12px;border-radius:50%;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      box-shadow:0 0 0 6px rgba(123,44,255,.08);
-    }
-    .job .when{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--muted);
-      margin-bottom:6px;
-    }
-    .job .title{
-      font-size:18px;
-      font-weight:700;
-      margin:0 0 8px;
-      line-height:1.25;
-    }
-    .job .org{
-      color:var(--muted);
-      font-size:14px;
-      margin-bottom:10px;
-    }
-    .job .copy{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.72;
-      margin:0;
-    }
-    .panel{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
-    .panel h3{
-      margin:0;
-      font-size:22px;
-      letter-spacing:-.03em;
-      font-family:"Georgia","Times New Roman",serif;
-    }
-    .panel .cols{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    .mini{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.62));
-    }
-    .mini .t{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--muted);
-      margin-bottom:8px;
-    }
-    .mini .c{
-      font-size:14px;
-      line-height:1.65;
-      color:var(--ink);
-      font-weight:600;
-    }
-    .about-contact{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:14px;
-      margin-top:18px;
-    }
-    .about, .contact{
-      background:rgba(255,255,255,.72);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:22px;
-    }
-    .about p, .contact p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.84;
-    }
-    .about p strong{color:var(--ink)}
-    .contact .links{
-      display:grid;
-      gap:12px;
-      margin-top:16px;
-    }
-    .contact-card{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px 14px 13px;
-      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.62));
-    }
-    .contact-card .l{
-      display:block;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--muted);
-      margin-bottom:8px;
-    }
-    .contact-card .r{
-      font-size:16px;
-      font-weight:650;
-      color:var(--ink);
-      word-break:break-word;
-    }
-    .footer-note{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-      margin-top:18px;
-      color:var(--muted);
-      font-size:13px;
-      padding:0 4px;
-    }
-    .split-word{
-      display:inline-block;
-      white-space:nowrap;
-    }
-    @media (max-width: 1080px){
-      .hero,
-      .work-grid,
-      .experience,
-      .about-contact,
-      .strip{
-        grid-template-columns:1fr;
-      }
-      .hero{
-        padding:28px 20px 20px;
-      }
-      .name{max-width:unset}
-      .proofs{grid-template-columns:1fr 1fr}
-      .profile-card{min-height:auto}
-      .section-head{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-      .footer-note{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-    }
-    @media (max-width: 720px){
-      .page{width:min(100% - 24px, var(--max)); padding-top:14px}
-      .topline{padding-bottom:14px}
-      .proofs,
-      .panel .cols{
-        grid-template-columns:1fr;
-      }
-      .strip-item,
-      .work-card,
-      .timeline,
-      .panel,
-      .about,
-      .contact{
-        border-radius:20px;
-      }
-      .hero{
-        border-radius:24px;
-      }
-      .name{
-        font-size:clamp(40px, 16vw, 56px);
-      }
-      .role{font-size:17px}
-      .value{font-size:15px}
-      .btn{width:100%}
-      .actions{flex-direction:column;align-items:stretch}
-      .meta-row{grid-template-columns:1fr}
-      .signal-row{flex-direction:column}
-      .signal-row .r{text-align:left;max-width:none}
-      .topline{
-        gap:10px;
-        flex-direction:column;
-        align-items:flex-start;
-      }
-    }
-    .neon-line{
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(123,44,255,.36), rgba(14,165,233,.25), rgba(24,180,123,.26), transparent);
-      margin:20px 0 0;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alexandra Chen · 陈则儒 — 品牌运营 / 内容策划 / AIGC 创意</title>
+<meta name="description" content="陈则儒 Alexandra Chen 个人作品集：品牌运营、活动策划、内容创作、社媒增长与 AIGC 创意传播。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+     ============================================================ */
+  :root{
+    --bg:        #f4f1ec;
+    --paper:     #faf8f4;
+    --ink:       #14120f;
+    --ink-soft:  #2a2620;
+    --muted:     #7c756a;
+    --line:      rgba(20,18,15,.13);
+    --line-soft: rgba(20,18,15,.07);
+    --gold:      #a88a4d;
+    --gold-soft: rgba(168,138,77,.14);
+    --serif:  "Cormorant Garamond", "Times New Roman", "Songti SC", serif;
+    --sans:   "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --max: 1200px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--gold);color:#fff}
+
+  .wrap{
+    width:min(var(--max), calc(100% - 64px));
+    margin:0 auto;
+  }
+
+  /* ============================ NAV ============================ */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(244,241,236,.82);
+    backdrop-filter:saturate(140%) blur(14px);
+    -webkit-backdrop-filter:saturate(140%) blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-in{
+    width:min(var(--max), calc(100% - 64px));
+    margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;gap:20px;
+  }
+  .nav-mark{
+    font-family:var(--serif);
+    font-size:20px;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:500;white-space:nowrap;
+  }
+  .nav-mark span{
+    color:var(--gold);font-family:var(--sans);
+    font-size:11px;letter-spacing:.28em;margin-left:10px;vertical-align:middle;
+  }
+  .nav-links{
+    display:flex;gap:22px;
+    font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .nav-links a{position:relative;padding:6px 0;transition:color .3s var(--ease);}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width .38s var(--ease);
+  }
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{width:100%}
+
+  /* ============================ HERO ============================ */
+  .hero{padding:104px 0 84px;position:relative;}
+  .hero::before{
+    content:"";position:absolute;top:-120px;right:-160px;
+    width:620px;height:620px;border-radius:50%;
+    background:radial-gradient(circle at 40% 40%, rgba(168,138,77,.16), transparent 62%);
+    pointer-events:none;filter:blur(6px);
+  }
+  .hero-top{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:24px;padding-bottom:28px;border-bottom:1px solid var(--line);
+    margin-bottom:52px;font-size:11.5px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .hero-top .r{ text-align:right; }
+  .hero-name{
+    font-family:var(--serif);font-weight:300;
+    font-size:clamp(54px, 10vw, 132px);line-height:.92;
+    letter-spacing:-.02em;margin-bottom:8px;
+  }
+  .hero-name em{
+    display:block;font-style:normal;font-size:.42em;
+    letter-spacing:.16em;color:var(--muted);margin-top:20px;
+    font-family:var(--sans);font-weight:300;
+  }
+  .hero-lead{
+    display:grid;grid-template-columns:1.15fr .85fr;
+    gap:56px;margin-top:52px;align-items:start;
+  }
+  .hero-statement{
+    font-family:var(--serif);font-size:clamp(22px, 2.6vw, 31px);
+    line-height:1.45;font-weight:400;color:var(--ink-soft);letter-spacing:-.01em;
+  }
+  .hero-statement b{
+    font-weight:500;border-bottom:1px solid var(--gold);padding-bottom:2px;
+  }
+  .hero-meta{display:flex;flex-direction:column;gap:20px;padding-top:8px;}
+  .hero-meta .row{
+    display:flex;justify-content:space-between;gap:16px;
+    padding-bottom:16px;border-bottom:1px solid var(--line-soft);font-size:13.5px;
+  }
+  .hero-meta .row .k{
+    color:var(--muted);letter-spacing:.06em;text-transform:uppercase;
+    font-size:10.5px;padding-top:3px;white-space:nowrap;
+  }
+  .hero-meta .row .v{text-align:right;font-weight:500;color:var(--ink);line-height:1.5;}
+
+  /* ============================ SECTION ============================ */
+  .section{ padding:88px 0; }
+  .section + .section{ border-top:1px solid var(--line-soft); }
+  .sec-head{display:flex;align-items:baseline;gap:26px;margin-bottom:52px;}
+  .sec-num{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.1em;padding-top:6px;}
+  .sec-title{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(30px, 4vw, 46px);letter-spacing:-.015em;line-height:1.1;
+  }
+  .sec-title small{
+    display:block;font-family:var(--sans);font-size:11px;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+    margin-top:12px;font-weight:400;
+  }
+
+  /* ============================ METRICS ============================ */
+  .metrics{
+    display:grid;grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .metric{padding:40px 30px 44px;border-right:1px solid var(--line-soft);}
+  .metric:last-child{ border-right:none; }
+  .metric .n{
+    font-family:var(--serif);font-size:clamp(38px, 5vw, 58px);
+    line-height:1;font-weight:400;letter-spacing:-.03em;display:block;margin-bottom:16px;
+  }
+  .metric .n i{font-style:normal;font-size:.5em;color:var(--gold);margin-left:2px;}
+  .metric .l{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--muted);display:block;margin-bottom:8px;
+  }
+  .metric .d{font-size:13.5px;color:var(--muted);line-height:1.6;}
+
+  /* ============================ FEATURE ============================ */
+  .feature{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;
+    padding:52px 0;border-top:1px solid var(--line-soft);align-items:start;
+  }
+  .feature:first-of-type{ border-top:1px solid var(--line); }
+  .feature-label{
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:18px;display:block;
+  }
+  .feature h3{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(26px, 3.2vw, 38px);line-height:1.16;
+    letter-spacing:-.015em;margin-bottom:16px;
+  }
+  .feature .sub{font-size:14px;color:var(--muted);line-height:1.7;}
+  .feature-body{display:grid;gap:0;}
+  .fpoint{
+    display:grid;grid-template-columns:110px 1fr;gap:24px;
+    padding:18px 0;border-top:1px solid var(--line-soft);
+  }
+  .fpoint:first-child{ border-top:none;padding-top:0; }
+  .fpoint .fk{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted);padding-top:4px;
+  }
+  .fpoint .fv{font-size:15px;line-height:1.72;color:var(--ink-soft);}
+  .fpoint .fv strong{font-weight:600;color:var(--ink);}
+
+  /* ============================ TIMELINE ============================ */
+  .timeline{ display:grid;gap:0; }
+  .tl-item{
+    display:grid;grid-template-columns:180px 1fr;gap:40px;
+    padding:32px 0;border-top:1px solid var(--line-soft);
+    transition:background .4s var(--ease);
+  }
+  .tl-item:first-child{ border-top:1px solid var(--line); }
+  .tl-when{
+    font-size:12px;letter-spacing:.14em;color:var(--muted);
+    text-transform:uppercase;padding-top:5px;
+  }
+  .tl-role{
+    font-family:var(--serif);font-size:22px;font-weight:500;
+    line-height:1.3;margin-bottom:6px;letter-spacing:-.01em;
+  }
+  .tl-org{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:16px;
+  }
+  .tl-points{display:grid;gap:10px;list-style:none;}
+  .tl-points li{
+    position:relative;padding-left:20px;font-size:14.5px;
+    line-height:1.75;color:var(--ink-soft);
+  }
+  .tl-points li::before{
+    content:"";position:absolute;left:0;top:.72em;
+    width:10px;height:1px;background:var(--gold);
+  }
+  .tl-points li b{ font-weight:600; }
+
+  /* ============================ SKILLS ============================ */
+  .skills{
+    display:grid;grid-template-columns:repeat(4, 1fr);gap:0;
+    border-top:1px solid var(--line);
+  }
+  .skill{
+    padding:34px 28px 38px;border-right:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .skill:nth-child(4n){ border-right:none; }
+  .skill .st{
+    font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:16px;display:block;
+  }
+  .skill p{font-size:13.5px;line-height:1.78;color:var(--ink-soft);}
+
+  /* ============================ HONORS ============================ */
+  .honors{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+  .honor{
+    font-size:12px;letter-spacing:.06em;padding:9px 16px;
+    border:1px solid var(--line);border-radius:999px;
+    color:var(--ink-soft);background:var(--paper);transition:.3s var(--ease);
+  }
+  .honor:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ============================================================
+     DECK · 幻灯片通用
+     ============================================================ */
+  .deck{
+    --u: 8px;
+    position:relative;
+    border:1px solid var(--line);
+    background:#100e0b;
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .deck-stage{
+    position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
+    background:
+      radial-gradient(70% 55% at 50% 0%, rgba(168,138,77,.10), transparent 68%),
+      #100e0b;
+  }
+  .slide{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    padding:calc(var(--u)*5.2) calc(var(--u)*5.8);
+    opacity:0;visibility:hidden;transform:translateY(1.2%);
+    transition:opacity .6s var(--ease), transform .6s var(--ease), visibility 0s linear .6s;
+    overflow-y:auto;scrollbar-width:none;color:#f3f0e9;
+  }
+  .slide::-webkit-scrollbar{ display:none; }
+  .slide.on{
+    opacity:1;visibility:visible;transform:none;
+    transition:opacity .6s var(--ease), transform .6s var(--ease), visibility 0s;
+  }
+  .slide-in{margin:auto 0;width:100%;}
+
+  .s-kicker{
+    font-size:calc(var(--u)*1.15);letter-spacing:.36em;
+    text-transform:uppercase;color:var(--gold);font-weight:400;
+  }
+  .s-rule{
+    width:calc(var(--u)*5);height:1px;background:var(--gold);
+    margin:calc(var(--u)*2) 0;opacity:.7;
+  }
+  .s-title{
+    font-family:var(--serif);font-weight:300;
+    font-size:calc(var(--u)*5.4);line-height:1.04;
+    letter-spacing:-.015em;color:#faf8f4;
+  }
+  .s-title em{font-style:normal;color:var(--gold);}
+  .s-sub{
+    margin-top:calc(var(--u)*1.6);font-size:calc(var(--u)*1.65);
+    letter-spacing:.06em;color:rgba(243,240,233,.6);font-weight:300;
+  }
+  .s-body{
+    margin-top:calc(var(--u)*2.4);font-size:calc(var(--u)*1.6);
+    line-height:1.85;color:rgba(243,240,233,.66);
+    max-width:88%;font-weight:300;
+  }
+
+  .s-cover{ text-align:center; }
+  .s-cover .slide-in{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .s-cover .brand{
+    font-family:var(--serif);font-size:calc(var(--u)*3.4);
+    letter-spacing:.42em;text-indent:.42em;
+    color:var(--gold);text-transform:uppercase;
+  }
+  .s-cover .big{
+    font-family:var(--serif);font-size:calc(var(--u)*8.6);
+    font-weight:300;line-height:1;
+    letter-spacing:-.01em;margin-top:calc(var(--u)*2.4);color:#faf8f4;
+  }
+  .s-cover .cn{
+    margin-top:calc(var(--u)*1.6);font-size:calc(var(--u)*1.9);
+    letter-spacing:.5em;text-indent:.5em;
+    color:rgba(243,240,233,.72);font-weight:300;
+  }
+  .s-cover .tag{
+    margin-top:calc(var(--u)*3.4);font-size:calc(var(--u)*1.35);
+    letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(243,240,233,.44);
+  }
+
+  .s-figures{display:flex;gap:calc(var(--u)*4);margin-top:calc(var(--u)*3.4);}
+  .s-fig{ flex:1; }
+  .s-fig .num{
+    font-family:var(--serif);font-size:calc(var(--u)*4.6);
+    line-height:1;color:#faf8f4;font-weight:400;letter-spacing:-.03em;
+  }
+  .s-fig .num i{font-style:normal;font-size:.46em;color:var(--gold);margin-left:2px;}
+  .s-fig .lbl{
+    margin-top:calc(var(--u)*1.2);font-size:calc(var(--u)*1.2);
+    letter-spacing:.2em;text-transform:uppercase;color:rgba(243,240,233,.42);
+  }
+  .s-fig .dsc{
+    margin-top:calc(var(--u)*.9);font-size:calc(var(--u)*1.35);
+    line-height:1.7;color:rgba(243,240,233,.6);font-weight:300;
+  }
+
+  .s-cols{
+    display:flex;gap:calc(var(--u)*4.4);margin-top:calc(var(--u)*3);
+    align-items:flex-start;
+  }
+  .s-col-a{ flex:1 1 auto;min-width:0; }
+  .s-col-b{
+    flex:0 0 34%;padding:calc(var(--u)*2.2);
+    border:1px solid rgba(168,138,77,.26);
+    background:rgba(168,138,77,.05);
+  }
+  .s-col-b .t{
+    font-size:calc(var(--u)*1.1);letter-spacing:.28em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:calc(var(--u)*1.4);
+  }
+  .s-col-b ul{list-style:none;display:grid;gap:calc(var(--u)*1);}
+  .s-col-b li{
+    position:relative;padding-left:calc(var(--u)*1.6);
+    font-size:calc(var(--u)*1.35);line-height:1.68;
+    color:rgba(243,240,233,.68);font-weight:300;
+  }
+  .s-col-b li::before{
+    content:"";position:absolute;left:0;top:.72em;
+    width:calc(var(--u)*.8);height:1px;background:var(--gold);
+  }
+
+  .s-list{margin-top:calc(var(--u)*2.6);display:grid;gap:0;}
+  .s-list li{
+    list-style:none;display:grid;
+    grid-template-columns:calc(var(--u)*12) 1fr;
+    gap:calc(var(--u)*2);padding:calc(var(--u)*1.5) 0;
+    border-top:1px solid rgba(243,240,233,.10);
+    font-size:calc(var(--u)*1.45);line-height:1.7;
+    color:rgba(243,240,233,.7);font-weight:300;
+  }
+  .s-list li:first-child{ border-top:none; }
+  .s-list li span{
+    color:var(--gold);letter-spacing:.16em;text-transform:uppercase;
+    font-size:calc(var(--u)*1.05);padding-top:calc(var(--u)*.45);
+  }
+
+  .s-tags{display:flex;flex-wrap:wrap;gap:calc(var(--u)*1.1);margin-top:calc(var(--u)*2.6);}
+  .s-tags span{
+    font-size:calc(var(--u)*1.35);letter-spacing:.14em;
+    padding:calc(var(--u)*.75) calc(var(--u)*1.5);
+    border-radius:999px;color:rgba(243,240,233,.82);
+    border:1px solid rgba(168,138,77,.3);
+    background:rgba(168,138,77,.06);font-weight:300;
+  }
+
+  /* 引言块 */
+  .s-quote{
+    margin-top:calc(var(--u)*3);
+    padding-left:calc(var(--u)*2.2);
+    border-left:1px solid var(--gold);
+    font-family:var(--serif);
+    font-size:calc(var(--u)*2.2);
+    line-height:1.5;
+    color:rgba(243,240,233,.78);
+    font-weight:300;
+    font-style:italic;
+    max-width:80%;
+  }
+  .s-quote small{
+    display:block;
+    margin-top:calc(var(--u)*1.2);
+    font-family:var(--sans);
+    font-style:normal;
+    font-size:calc(var(--u)*1.15);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* 对照双栏 */
+  .s-dual{
+    display:flex;
+    gap:calc(var(--u)*3);
+    margin-top:calc(var(--u)*3);
+  }
+  .s-dual > div{
+    flex:1;
+    padding:calc(var(--u)*2.2);
+    border:1px solid rgba(243,240,233,.14);
+    background:rgba(243,240,233,.02);
+  }
+  .s-dual .dt{
+    font-size:calc(var(--u)*1.15);
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:calc(var(--u)*1.6);
+  }
+  .s-dual p{
+    font-size:calc(var(--u)*1.4);
+    line-height:1.78;
+    color:rgba(243,240,233,.68);
+    font-weight:300;
+  }
+
+  /* 控制条 */
+  .deck-bar{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 18px;background:#0b0a08;
+    border-top:1px solid rgba(243,240,233,.08);
+  }
+  .d-btn{
+    width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid rgba(243,240,233,.16);background:transparent;color:#f3f0e9;
+    font-size:15px;line-height:1;cursor:pointer;transition:.28s var(--ease);
+    border-radius:1px;
+  }
+  .d-btn:hover{
+    border-color:var(--gold);color:var(--gold);background:rgba(168,138,77,.10);
+  }
+  .d-dots{display:flex;gap:7px;margin-left:8px;}
+  .d-dot{
+    width:6px;height:6px;padding:0;border:0;border-radius:50%;
+    background:rgba(243,240,233,.24);cursor:pointer;transition:.28s var(--ease);
+  }
+  .d-dot.on{width:22px;border-radius:999px;background:var(--gold);}
+  .d-count{
+    margin-left:auto;font-size:11.5px;letter-spacing:.2em;
+    color:rgba(243,240,233,.44);font-variant-numeric:tabular-nums;
+  }
+  .deck:fullscreen{
+    border-radius:0;display:flex;flex-direction:column;justify-content:center;background:#000;
+  }
+  .deck:fullscreen .deck-stage{
+    width:auto;height:calc(100vh - 64px);aspect-ratio:16/9;margin:0 auto;
+  }
+
+  /* ============================================================
+     GREEN · 商赛
+     ============================================================ */
+  .deck.green{
+    --gold: #4d8f6b;
+    --gold-soft: rgba(77,143,107,.16);
+    background:#0a1310;
+  }
+  .deck.green .deck-stage{
+    background:
+      radial-gradient(70% 55% at 50% 0%, rgba(77,143,107,.14), transparent 68%),
+      radial-gradient(60% 60% at 90% 100%, rgba(77,143,107,.08), transparent 70%),
+      #0a1310;
+  }
+  .deck.green .deck-bar{ background:#06100c; }
+  .deck.green .d-btn:hover{
+    background:rgba(77,143,107,.14);
+    border-color:rgba(77,143,107,.6);
+    color:#7fc39c;
+  }
+  .deck.green .d-dot.on{ background:#5fa87c; }
+  .deck.green .s-kicker,
+  .deck.green .s-list li span,
+  .deck.green .s-fig .num i,
+  .deck.green .s-col-b .t,
+  .deck.green .s-dual .dt{ color:#7fc39c; }
+  .deck.green .s-title em{ color:#7fc39c; }
+  .deck.green .s-cover .brand{ color:#7fc39c; }
+  .deck.green .s-rule{ background:#5fa87c; }
+  .deck.green .s-col-b{
+    border-color:rgba(77,143,107,.3);
+    background:rgba(77,143,107,.06);
+  }
+  .deck.green .s-tags span{
+    border-color:rgba(77,143,107,.34);
+    background:rgba(77,143,107,.08);
+  }
+
+  /* ============================================================
+     GOTHIC · 苦痛升华之殿
+     ============================================================ */
+  .deck.gothic{
+    --gold: #b8443b;
+    --gold-soft: rgba(184,68,59,.18);
+    background:#0a0606;
+  }
+  .deck.gothic .deck-stage{
+    background:
+      radial-gradient(70% 55% at 50% 0%, rgba(184,68,59,.14), transparent 68%),
+      radial-gradient(60% 60% at 90% 100%, rgba(184,68,59,.08), transparent 70%),
+      #0a0606;
+  }
+  .deck.gothic .deck-bar{ background:#050303; }
+  .deck.gothic .d-btn:hover{
+    background:rgba(184,68,59,.16);
+    border-color:rgba(184,68,59,.62);
+    color:#e08a80;
+  }
+  .deck.gothic .d-dot.on{ background:#c9584d; }
+  .deck.gothic .s-kicker,
+  .deck.gothic .s-list li span,
+  .deck.gothic .s-fig .num i,
+  .deck.gothic .s-col-b .t,
+  .deck.gothic .s-dual .dt{ color:#d97368; }
+  .deck.gothic .s-title em{ color:#d97368; }
+  .deck.gothic .s-cover .brand{ color:#d97368; }
+  .deck.gothic .s-rule{ background:#b8443b; }
+  .deck.gothic .s-col-b{
+    border-color:rgba(184,68,59,.3);
+    background:rgba(184,68,59,.06);
+  }
+  .deck.gothic .s-tags span{
+    border-color:rgba(184,68,59,.36);
+    background:rgba(184,68,59,.08);
+  }
+  .deck.gothic .s-quote{ border-left-color:rgba(184,68,59,.72); }
+  .deck.gothic .s-quote small{ color:#d97368; }
+  .deck.gothic .s-dual > div{
+    border-color:rgba(184,68,59,.28);
+    background:rgba(184,68,59,.04);
+  }
+  .deck.gothic .slide::after{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(184,68,59,.5),transparent);
+    pointer-events:none;
+  }
+
+  /* ============================ CONTACT ============================ */
+  .contact{
+    display:grid;grid-template-columns:1.2fr .8fr;
+    gap:64px;align-items:start;
+  }
+  .contact-lead{
+    font-family:var(--serif);font-size:clamp(28px, 3.6vw, 42px);
+    font-weight:300;line-height:1.3;letter-spacing:-.015em;color:var(--ink-soft);
+  }
+  .contact-lead em{font-style:normal;color:var(--gold);}
+  .contact-list{display:grid;gap:0;}
+  .c-item{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:20px;padding:20px 0;border-top:1px solid var(--line-soft);
+  }
+  .c-item:first-child{ border-top:1px solid var(--line); }
+  .c-item .k{
+    font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--muted);white-space:nowrap;
+  }
+  .c-item .v{
+    font-size:15px;font-weight:500;text-align:right;
+    word-break:break-all;transition:color .3s var(--ease);
+  }
+  .c-item a.v:hover{ color:var(--gold); }
+
+  /* ============================ FOOTER ============================ */
+  .footer{
+    border-top:1px solid var(--line);margin-top:20px;padding:36px 0 48px;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;
+    font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* ============================ REVEAL ============================ */
+  .reveal{
+    opacity:0;transform:translateY(22px);
+    transition:opacity .9s var(--ease), transform .9s var(--ease);
+  }
+  .reveal.in{ opacity:1;transform:none; }
+
+  /* ============================ RESPONSIVE ============================ */
+  @media (max-width: 1024px){
+    .hero-lead{ grid-template-columns:1fr;gap:36px; }
+    .metrics{ grid-template-columns:1fr 1fr; }
+    .metric:nth-child(2){ border-right:none; }
+    .metric:nth-child(1),.metric:nth-child(2){ border-bottom:1px solid var(--line-soft); }
+    .feature{ grid-template-columns:1fr;gap:30px; }
+    .skills{ grid-template-columns:1fr 1fr; }
+    .skill:nth-child(4n){ border-right:1px solid var(--line-soft); }
+    .skill:nth-child(2n){ border-right:none; }
+    .contact{ grid-template-columns:1fr;gap:40px; }
+    .s-cols{ flex-direction:column;gap:calc(var(--u)*2.6); }
+    .s-col-b{ flex:0 0 auto;width:100%; }
+    .s-body{ max-width:100%; }
+    .s-quote{ max-width:100%; }
+    .s-dual{ flex-direction:column;gap:calc(var(--u)*1.6); }
+  }
+  @media (max-width: 720px){
+    .wrap,.nav-in{ width:calc(100% - 36px); }
+    .hero{ padding:64px 0 56px; }
+    .hero-top{ flex-direction:column;align-items:flex-start;gap:8px; }
+    .hero-top .r{ text-align:left; }
+    .section{ padding:60px 0; }
+    .sec-head{ flex-direction:column;gap:12px;margin-bottom:36px; }
+    .nav-links{ display:none; }
+    .metrics{ grid-template-columns:1fr; }
+    .metric{ border-right:none !important;border-bottom:1px solid var(--line-soft); }
+    .metric:last-child{ border-bottom:none; }
+    .skills{ grid-template-columns:1fr; }
+    .skill{ border-right:none !important; }
+    .tl-item{ grid-template-columns:1fr;gap:10px; }
+    .fpoint{ grid-template-columns:1fr;gap:6px; }
+    .s-list li{ grid-template-columns:1fr;gap:calc(var(--u)*.6); }
+    .footer{ flex-direction:column;align-items:flex-start;gap:10px; }
+    .deck-stage{ aspect-ratio:4/3; }
+    .s-figures{ flex-direction:column;gap:calc(var(--u)*2); }
+  }
+</style>
 </head>
 <body>
-<div class="page">
-  <!-- 顶栏 -->
-  <div class="topline">
-    <div class="mark"><span class="dot"></span> Alexandra Chen · Portfolio</div>
-    <div>内容 · 活动 · AIGC · 增长</div>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-mark">Alexandra Chen<span>陈则儒</span></div>
+    <div class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#deck">Presentation</a>
+      <a href="#campaign">Campaign</a>
+      <a href="#competition">Competition</a>
+      <a href="#soul">AIGC</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
+</nav>
 
-  <!-- HERO 区域 -->
-  <section class="hero">
-    <div class="hero-main">
-      <div class="eyebrow"><b>Open to collaboration</b> · 内容创作 / 活动策划 / AIGC 变现</div>
-      <h1 class="name">陈则儒<br/>Alexandra Chen</h1>
-      <p class="role">市场营销 × AI增长策略 · 复合型创作者，擅长将活动策划、社媒增长与 AIGC 创意整合为可量化结果。</p>
-      <p class="value">从0到1主导20+校园大型活动，独立运营自媒体实现50w+爆款与30%粉丝增长；以AIGC一等奖项目验证“创意+技术”的变现能力。会计学背景赋予结构化思维，数据驱动决策。</p>
-      <div class="proofs">
-        <div class="proof"><span class="k">🏆 AIGC Champion</span><span class="v">一等奖 (1/37)<br/>160+ prompt迭代</span></div>
-        <div class="proof"><span class="k">Impact</span><span class="v">20+ 大型活动<br/>5000+ 观众</span></div>
-        <div class="proof"><span class="k">Growth</span><span class="v">50w+ 阅读 · 30% 粉丝增长<br/>AI提效40%</span></div>
-      </div>
-      <div class="actions">
-        <a class="btn primary" href="#contact"><span>联系合作</span><span class="arrow">↗</span></a>
-        <a class="btn secondary" href="#selected-work"><span>查看精选成果</span><span class="arrow">↓</span></a>
-      </div>
+<!-- ============================ HERO ============================ -->
+<header class="hero" id="profile">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>Portfolio — 2025 / 2026</div>
+      <div class="r">Brand · Content · AIGC</div>
     </div>
-    <aside class="hero-side">
-      <div class="profile-card">
-        <div class="profile-title">Quick Profile</div>
-        <div class="profile-grid">
-          <div class="metric"><span class="num">4.5</span><span class="txt">GPA / 5.0<br/>杭电 会计学本科</span></div>
-          <div class="metric"><span class="num">4 / 37</span><span class="txt">专业排名<br/>前11%</span></div>
-          <div class="metric"><span class="num">9</span><span class="txt">ACCA 通过门数<br/>财务与数据基础</span></div>
-          <div class="metric"><span class="num">50%</span><span class="txt">互动率峰值<br/>内容传播能力</span></div>
+
+    <h1 class="hero-name reveal">
+      Alexandra Chen
+      <em>陈 则 儒</em>
+    </h1>
+
+    <div class="hero-lead">
+      <p class="hero-statement reveal">
+        以<strong>品牌运营</strong>为方法，以<strong>内容增长</strong>为结果。<br>
+        擅长把品牌内容、活动策划、渠道运营与 AIGC 创意，整合为可落地、可传播、可量化的增长资产。
+      </p>
+
+      <div class="hero-meta reveal">
+        <div class="row">
+          <div class="k">Education</div>
+          <div class="v">杭州电子科技大学 · 会计学本科<br>2023.09 — 2027.06</div>
+        </div>
+        <div class="row">
+          <div class="k">Academic</div>
+          <div class="v">GPA 4.5 / 5.0 · 专业排名 4 / 37<br>ACCA 已通过 9 门</div>
+        </div>
+        <div class="row">
+          <div class="k">Focus</div>
+          <div class="v">品牌渠道运营 · 内容创作<br>活动策划 · AIGC 创意传播</div>
+        </div>
+        <div class="row">
+          <div class="k">Status</div>
+          <div class="v">开放实习 / 项目合作 / 品牌传播</div>
         </div>
       </div>
-      <div class="signal-card">
-        <div class="profile-title">What I bring</div>
-        <div class="signal-row"><div class="l">擅长领域</div><div class="r">活动策划 · 内容创作 · 社媒增长 · AIGC 创意 · 用户洞察</div></div>
-        <div class="signal-row"><div class="l">工具链</div><div class="r">Excel / SQL / GA4 / Canva · AI图像/视频 (Midjourney/Runway) · Adobe 基础</div></div>
-        <div class="signal-row"><div class="l">语言</div><div class="r">CET-6 578 / IELTS 6.5 · 普通话二甲</div></div>
-      </div>
-    </aside>
-  </section>
-
-  <!-- 快捷数据条 -->
-  <section class="section strip" aria-label="proof strip">
-    <div class="strip-item"><div class="label">Education</div><div class="headline">2023–2027 会计学本科</div><div class="sub">杭电 · GPA 4.5/5.0 · 排名 4/37 · ACCA 9/13</div></div>
-    <div class="strip-item"><div class="label">Results</div><div class="headline">5000+ 观众 · 50w+ 阅读</div><div class="sub">线下活动与线上内容双轮驱动，传播可量化</div></div>
-    <div class="strip-item"><div class="label">AIGC</div><div class="headline">一等奖 · 160+ prompt</div><div class="sub">生物朋克世界观，动态分镜视频，48h爆款传播</div></div>
-    <div class="strip-item"><div class="label">Availability</div><div class="headline">实习 · 项目协作 · 内容共创 · AIGC提案</div><div class="sub">可远程/线下 · 立即到岗</div></div>
-  </section>
-
-  <!-- 精选项目 / Selected Work -->
-  <section class="block" id="selected-work">
-    <div class="section-head"><h2>Featured Projects / Selected Work</h2><p>整合创意、AI与数据，产出可量化的商业价值</p></div>
-    <div class="work-grid">
-      <article class="work-card">
-        <div><div class="pill">Campus Events · Creative Direction</div><h3 class="work-title">校艺术团导演部负责人</h3><p class="work-desc">0-1主导20+校园大型活动（迎新晚会、舞蹈专场），独立完成创意构思、全流程统筹，累计触达50000+人次，活动参与率提升35%。</p></div>
-        <div class="work-meta"><div class="meta-row"><div class="m">Context</div><div class="v">在资源有限的校园环境中打造高沉浸感品牌活动</div></div><div class="meta-row"><div class="m">Ownership</div><div class="v">创意策划 · 故事线 · 舞美统筹 · 15人跨职能团队管理 · 公众号&短视频内容</div></div><div class="meta-row"><div class="m">Result</div><div class="v">5000+ 现场观众 · 月均曝光增长40% · 推文打开率25% · 互动意愿提升50%</div></div></div>
-      </article>
-      <article class="work-card">
-        <div><div class="pill">Self-Media · AI Growth Hacking</div><h3 class="work-title">自媒体内容创作者</h3><p class="work-desc">独立运营社交媒体账号，运用AI工具辅助内容生成与优化，单篇图文阅读量超50万，平均互动率超50%。</p></div>
-        <div class="work-meta"><div class="meta-row"><div class="m">Tactics</div><div class="v">用户画像分析 · 算法适配发布时间 · AI辅助文案/视觉</div></div><div class="meta-row"><div class="m">Ownership</div><div class="v">全链路内容创作 · 数据复盘 · 迭代策略</div></div><div class="meta-row"><div class="m">Result</div><div class="v">6个月粉丝增长30% · 创作效率提升40% · 爆款率行业前列</div></div></div>
-      </article>
-      <article class="work-card">
-        <div><div class="pill">AIGC · Worldbuilding & Viral Campaign</div><h3 class="work-title">AIGC创新大赛一等奖</h3><p class="work-desc">切中生物朋克暗黑美学需求，0-1打造游戏世界观设定集；160+组prompt迭代，生成游戏级质感画面；AI动态分镜视频零台词叙事，48h自发转发200+次。</p></div>
-        <div class="work-meta"><div class="meta-row"><div class="m">Challenge</div><div class="v">完全依靠AI视觉与叙事，无真人配音/文案</div></div><div class="meta-row"><div class="m">Execution</div><div class="v">Midjourney/Stable Diffusion · Runway动态分镜 · 极致风格化</div></div><div class="meta-row"><div class="m">Result</div><div class="v">冠军 (1/37) · 传播溢出到玩家社群，建立个人 IP 影响力</div></div></div>
-      </article>
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- 经历 & 能力 -->
-  <section class="block">
-    <div class="section-head"><h2>Experience & Skills</h2><p>创意×执行×结果，跨领域落地能力</p></div>
-    <div class="experience">
-      <div class="timeline">
-        <div class="job"><div class="when">2023.09 — 至今</div><h3 class="title">校艺术团 · 导演部负责人</h3><div class="org">策划/创意/团队管理</div><p class="copy">主导大型活动0-1落地，用户增长策略，内容矩阵搭建，跨部门协作。</p></div>
-        <div class="job"><div class="when">2024.01 — 至今</div><h3 class="title">自媒体 · 内容创作者 (个人IP)</h3><div class="org">社媒运营/AI工具/数据分析</div><p class="copy">独立创作图文短视频，运用AI提效40%，数据驱动选题，爆款率稳定。</p></div>
-        <div class="job"><div class="when">2024.03 — 2025.06</div><h3 class="title">校团委 · 助理协调员</h3><div class="org">活动统筹/跨部门协作</div><p class="copy">协调5+部门，优化流程提升效率25%，建立数据复盘机制。</p></div>
-        <div class="job"><div class="when">2025.01 — 2025.02</div><h3 class="title">中国农业银行 · 大堂经理</h3><div class="org">客户服务/调研支持</div><p class="copy">服务5000+客户，参与支付结算调研，支撑年度业务报告。</p></div>
-        <div class="job"><div class="when">2024.06 — 2024.08</div><h3 class="title">乐清市宏诚会计事务所 · 会计助理</h3><div class="org">总账/财务报告</div><p class="copy">协助月度结账与报表编制，强化数据敏感性与异常排查能力。</p></div>
+<!-- ============================ METRICS ============================ -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="metrics reveal">
+      <div class="metric">
+        <span class="l">Reach</span>
+        <span class="n">50<i>K+</i></span>
+        <span class="d">校园活动累计触达用户，覆盖迎新晚会、舞蹈专场等 20 余场大型品牌活动</span>
       </div>
-      <div class="panel">
-        <h3>Core Capabilities</h3>
-        <div class="cols">
-          <div class="mini"><div class="t">Marketing</div><div class="c">活动策划、内容创作、社媒运营、用户洞察、SEO/SEM基础</div></div>
-          <div class="mini"><div class="t">Analytics</div><div class="c">Excel (VLOOKUP/透视表)、SQL、GA4、数据可视化</div></div>
-          <div class="mini"><div class="t">Creative Tools</div><div class="c">Canva、AI绘图/视频 (Midjourney/Runway/可灵/即梦)、Adobe基础、墨刀、TREASOLO、Vibe Coding</div></div>
-          <div class="mini"><div class="t">Soft Skills</div><div class="c">跨部门协作、Storytelling、项目管理、快速学习、用户共情</div></div>
+      <div class="metric">
+        <span class="l">Content</span>
+        <span class="n">500<i>K+</i></span>
+        <span class="d">单篇图文最高阅读量，平均互动率超过 50%，内容传播能力经过验证</span>
+      </div>
+      <div class="metric">
+        <span class="l">Growth</span>
+        <span class="n">30<i>%</i></span>
+        <span class="d">3 个月内粉丝增长，基于用户画像与平台算法持续优化选题与节奏</span>
+      </div>
+      <div class="metric">
+        <span class="l">Award</span>
+        <span class="n">1<i>st</i></span>
+        <span class="d">AIGC 创新大赛一等奖（1 / 37），以极致风格与叙事完成度夺冠</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WORK ============================ -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">01</div>
+      <h2 class="sec-title">
+        Selected Work
+        <small>代表案例 · 精选成果</small>
+      </h2>
+    </div>
+
+    <article class="feature reveal">
+      <div>
+        <span class="feature-label">Brand &amp; Channel Ops · owocare</span>
+        <h3>宠物品牌<br>品牌渠道运营</h3>
+        <p class="sub">
+          2026.07 — 2026.10 · 快团团 / 微信私域 / 线下渠道<br>
+          从品牌内容到渠道拓展，把运营做成可复用的增长体系。
+        </p>
+      </div>
+      <div class="feature-body">
+        <div class="fpoint">
+          <div class="fk">Brand</div>
+          <div class="fv">负责宠物用品品牌在<strong>快团团及微信私域</strong>的日常运营，涵盖选品、种草内容策划、社群互动与售后履约，持续提升品牌认知与用户信任。</div>
         </div>
-        <div class="badge-line"><span class="badge">校一等奖学金</span><span class="badge">校二等奖学金</span><span class="badge">优秀学生干部</span><span class="badge">优秀团员</span><span class="badge">学生工作奖 ×2</span><span class="badge">文艺工作奖 ×2</span><span class="badge">AIGC 一等奖</span></div>
-        <div class="neon-line"></div>
-        <div class="signal-row" style="padding-top:0;border-top:none;"><div class="l">项目偏好</div><div class="r">内容传播 · 活动落地 · AIGC 创意 · 增长策略 · 跨部门协作</div></div>
-        <div class="signal-row"><div class="l">合作方式</div><div class="r">实习 / 项目协作 / 商务支持 / 品牌活动 / 内容共创</div></div>
+        <div class="fpoint">
+          <div class="fk">Campaigns</div>
+          <div class="fv">主导新品及爆品打造、节日营销与日常团购活动，结合消费者洞察与平台趋势，推动用户增长、转化率与复购率提升。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Offline</div>
+          <div class="fv">拓展并维护宠物店、宠物医院、社区团长等线下渠道，推进合作洽谈、样品铺设与联合活动，提升品牌在区域市场的渗透与影响力。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Data</div>
+          <div class="fv">搭建运营数据追踪与复盘体系，分析用户行为、商品动销与活动效果，输出策略优化建议；运用 AI 工具提升内容产出与复盘效率。</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature reveal">
+      <div>
+        <span class="feature-label">AIGC · Campaign Design</span>
+        <h3>AIGC 创新大赛<br>一等奖（1 / 37）</h3>
+        <p class="sub">
+          2025.12 · 生物朋克暗黑美学 · 游戏世界观设定集<br>
+          从 Prompt 工程到动态分镜，完成一次完整的 AI 创意传播实践。
+        </p>
+      </div>
+      <div class="feature-body">
+        <div class="fpoint">
+          <div class="fk">Insight</div>
+          <div class="fv">切中硬核玩家对<strong>生物朋克暗黑美学</strong>的渴求，0–1 打造游戏世界观设定集。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Prompt</div>
+          <div class="fv"><strong>160+ 组</strong>调试打磨出一套稳定生成方法，画面达到游戏截图质感。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Narrative</div>
+          <div class="fv">AI 生成动态分镜视频，<strong>零台词</strong>纯靠画面讲清文明兴衰，观众自发脑补世界观。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Impact</div>
+          <div class="fv">核心物料 <strong>48 小时内自发转发 200+ 次</strong>，凭极致风格夺冠。</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature reveal">
+      <div>
+        <span class="feature-label">Campus Events · Creative Direction</span>
+        <h3>校艺术团<br>导演部负责人</h3>
+        <p class="sub">
+          2023.09 — 至今 · 策划与创意方向<br>
+          从创意构思到全流程统筹，把活动做成品牌体验。
+        </p>
+      </div>
+      <div class="feature-body">
+        <div class="fpoint">
+          <div class="fk">Strategy</div>
+          <div class="fv">从 0 到 1 主导策划 <strong>20 余场</strong>校园大型品牌活动，独立完成创意构思、故事线设计与全流程统筹，累计触达用户超 <strong>50,000 人次</strong>，活动参与率平均提升 35%。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Growth</div>
+          <div class="fv">围绕学生用户洞察制定内容矩阵，撰写公众号推文 20 余篇，同步输出短视频与平面视觉，活动曝光量月均增长 <strong>40%</strong>，推文平均打开率提升至 <strong>25%</strong>。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Experience</div>
+          <div class="fv">基于用户情绪曲线设计舞美互动与沉浸式环节，活动后调研显示观众互动意愿提升 <strong>50%</strong>。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Team</div>
+          <div class="fv">搭建 <strong>15 人</strong>跨职能创意团队，制定培训与考核体系，协助统筹「校园文化节」等大型活动，协调 5 个以上部门协作。</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature reveal">
+      <div>
+        <span class="feature-label">Self-Media · Growth</span>
+        <h3>自媒体运营<br>个人 IP 孵化</h3>
+        <p class="sub">
+          2024.01 — 至今 · 内容创作者<br>
+          独立运营社交媒体账号，以数据与 AI 驱动内容迭代。
+        </p>
+      </div>
+      <div class="feature-body">
+        <div class="fpoint">
+          <div class="fk">Content</div>
+          <div class="fv">独立运营社交媒体账号，创作图文及短视频内容，其中单篇图文阅读量超 <strong>50 万</strong>，平均互动率超过 <strong>50%</strong>。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Efficiency</div>
+          <div class="fv">运用 AI 工具辅助内容生成，提升创作效率约 <strong>40%</strong>。</div>
+        </div>
+        <div class="fpoint">
+          <div class="fk">Algorithm</div>
+          <div class="fv">基于用户画像和平台算法机制持续调整选题、发布时间与形式，<strong>3 个月内粉丝增长 30%</strong>。</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ EXPERIENCE ============================ -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">02</div>
+      <h2 class="sec-title">
+        Experience
+        <small>经历 · 从创意到结果</small>
+      </h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-when">2026.07 — 2026.10</div>
+        <div>
+          <h3 class="tl-role">owocare · 品牌渠道运营</h3>
+          <div class="tl-org">Brand &amp; Channel Operations</div>
+          <ul class="tl-points">
+            <li><b>品牌与内容运营：</b>负责宠物用品品牌在快团团及微信私域的日常运营，涵盖选品、种草内容策划、社群互动与售后履约，持续提升品牌认知与用户信任。</li>
+            <li><b>活动策划与增长：</b>主导新品及爆品打造、节日营销与日常团购活动，结合消费者洞察与平台趋势，推动用户增长、转化率与复购率提升。</li>
+            <li><b>线下渠道拓展：</b>拓展并维护宠物店、宠物医院、社区团长等线下渠道，推进合作洽谈、样品铺设与联合活动，提升品牌在区域市场的渗透与影响力。</li>
+            <li><b>数据驱动与复盘：</b>搭建运营数据追踪与复盘体系，分析用户行为、商品动销与活动效果，输出策略优化建议；运用 AI 工具提升内容产出与复盘效率。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-when">2025.12</div>
+        <div>
+          <h3 class="tl-role">AIGC 创新大赛 · 一等奖（1 / 37）</h3>
+          <div class="tl-org">Biomechanical Gothic · IP Development</div>
+          <ul class="tl-points">
+            <li>以生物朋克暗黑美学为切口，0–1 打造游戏世界观设定集，构建完整的世界观体系与视觉符号。</li>
+            <li>160+ 组 Prompt 迭代打磨出稳定生成方法；AI 动态分镜视频零台词讲清文明兴衰。</li>
+            <li>核心物料 48 小时内自发转发 <b>200+ 次</b>，凭极致风格夺冠。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-when">2025.01 — 2025.02</div>
+        <div>
+          <h3 class="tl-role">中国农业银行乐清支行 · 大堂经理</h3>
+          <div class="tl-org">Client Service &amp; Research</div>
+          <ul class="tl-points">
+            <li>为超过 <b>5,000 名客户</b>提供业务咨询与服务支持，通过观察用户动线与痛点优化业务指引，提升客户满意度与业务办理效率。</li>
+            <li>参与支付结算调研项目，协助数据收集与分析，支持编写年度业务发展报告。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-when">2024.06 — 2024.08</div>
+        <div>
+          <h3 class="tl-role">乐清市宏诚会计事务所 · 会计师助理</h3>
+          <div class="tl-org">Accounting &amp; Analysis</div>
+          <ul class="tl-points">
+            <li>协助完成总账核算、月度结账及财务报告编制，强化数据敏感性与逻辑分析能力，能从复杂数据中快速定位异常。</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SKILLS ============================ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">03</div>
+      <h2 class="sec-title">
+        Capabilities
+        <small>能力 · 工具 · 荣誉</small>
+      </h2>
+    </div>
+
+    <div class="skills reveal">
+      <div class="skill">
+        <span class="st">Marketing</span>
+        <p>活动策划 · 内容创作 · 社交媒体运营 · 用户洞察 · 跨部门协作 · Storytelling · 项目管理</p>
+      </div>
+      <div class="skill">
+        <span class="st">Data</span>
+        <p>Excel（VLOOKUP / 数据透视表） · SQL · 数据可视化 · Google Analytics 基础</p>
+      </div>
+      <div class="skill">
+        <span class="st">Creative Tools</span>
+        <p>Canva · 秀米 · AI 绘图与视频工具（Midjourney / 可灵 / 即梦 / Sora） · 基础 Adobe 系列 · AI 产品工具（墨刀 / TREA SOLO） · Vibe Coding</p>
+      </div>
+      <div class="skill">
+        <span class="st">Languages</span>
+        <p>英语流利（CET-6 578 / IELTS 6.5）· 普通话标准（二级甲等）</p>
       </div>
     </div>
-  </section>
 
-  <!-- English Resume 板块 (新增，丰富页面) -->
-  <section class="block" style="margin-top: 2rem;">
-    <div class="section-head"><h2>English Resume</h2><p>Professional experience & skills in global context</p></div>
-    <div class="about-contact" style="grid-template-columns: 1fr 1fr;">
-      <div class="about" style="background:rgba(255,255,255,.72); backdrop-filter: blur(12px);">
-        <p style="margin-bottom: 1rem;"><strong>Alexandra Chen</strong><br/>Marketing & AI Growth Creator</p>
-        <p><strong>Education</strong><br/>Hangzhou Dianzi University – B.A. Accounting (2023–2027)<br/>GPA 4.5/5.0 · Rank 4/37 · ACCA 9/13</p>
-        <p style="margin-top: 1rem;"><strong>Selected Achievements</strong><br/>🏆 AIGC Innovation Competition – 1st Prize (1/37)<br/>📈 500K+ reads on a single post · 30% follower growth in 6 months<br/>🎤 20+ campus events, 5000+ attendees, +35% participation</p>
-      </div>
-      <div class="contact" style="background:rgba(255,255,255,.72); backdrop-filter: blur(12px);">
-        <p><strong>Core Skills</strong><br/>Event Planning · Content Creation · Social Media Growth · AIGC Tools (Midjourney/Runway) · Data Analytics (Excel/SQL/GA4) · Cross-functional Collaboration</p>
-        <p style="margin-top: 1rem;"><strong>Work Experience (Highlight)</strong><br/>• University Art Troupe Director: led 20+ events, 15-person team<br/>• Self-Media Creator: AI-driven content, 30% growth in 3 months<br/>• Bank Lobby Manager: served 5000+ clients, process optimization</p>
-        <p style="margin-top: 1rem;"><strong>Contact</strong><br/>📧 1638560849@qq.com &nbsp;|&nbsp; 📞 +86 13806865691<br/>🌐 <a href="https://alexandra-chen-netizen.github.io/alexandra.github.io/" target="_blank" style="text-decoration: underline;">Portfolio</a></p>
-        <div style="margin-top: 0.8rem;"><a href="#" class="btn secondary" style="padding: 6px 16px;">Download Full CV (PDF)</a></div>
+    <div style="margin-top:40px;" class="reveal">
+      <span class="feature-label" style="margin-bottom:16px;">Honors &amp; Awards</span>
+      <div class="honors">
+        <span class="honor">AIGC 创新大赛一等奖（1 / 37）</span>
+        <span class="honor">校一等奖学金 2023–2024</span>
+        <span class="honor">校二等奖学金 2024–2025</span>
+        <span class="honor">优秀学生干部</span>
+        <span class="honor">优秀团员</span>
+        <span class="honor">学生工作奖 ×2</span>
+        <span class="honor">文艺工作奖 ×2</span>
+        <span class="honor">ACCA 已通过 9 门</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- About & Contact (中文) -->
-  <section class="block">
-    <div class="section-head"><h2>About & Connect</h2><p>会计×创意×AI，将想法落地为增长</p></div>
-    <div class="about-contact">
-      <div class="about"><p>我在会计学训练中建立了<strong>结构化思考、数据敏感度和严谨执行</strong>的底层能力；在校园活动、自媒体与 AIGC 项目中，持续强化<strong>创意表达、传播意识和团队协作</strong>。我的优势不是单点技能，而是把想法推进成可量化的结果——从主题、脚本、物料到发布、复盘、增长，我都愿意亲自参与并持续优化。如果你需要一个既能理解内容、又能看懂数据，还能把事情真正推进的人，这里会是一个合适的起点。</p></div>
-      <div class="contact"><p>欢迎联系我用于求职、合作、校园项目、品牌活动、内容制作或 AIGC 创意提案。</p><div class="links"><div class="contact-card"><span class="l">Email</span><span class="r">1638560849@qq.com</span></div><div class="contact-card"><span class="l">Phone</span><span class="r">+86 13806865691</span></div><div class="contact-card"><span class="l">Location</span><span class="r">China · 可远程沟通 / 可合作</span></div></div></div>
+<!-- ============================ PRESENTATION · 简历演示版 ============================ -->
+<section class="section" id="deck">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">04</div>
+      <h2 class="sec-title">
+        Presentation
+        <small>简历演示版 · 可直接翻页查看</small>
+      </h2>
     </div>
-  </section>
 
-  <div class="footer-note"><div>Hangzhou Dianzi University · Bachelor of Accounting · Sep 2023 – Jun 2027</div><div>Built with precision · AI-enhanced portfolio</div></div>
-</div>
+    <div class="deck reveal" id="deckBox">
+      <div class="deck-stage">
+
+        <section class="slide s-cover on">
+          <div class="slide-in">
+            <div class="brand">Portfolio</div>
+            <div class="big">Alexandra Chen</div>
+            <div class="cn">陈 则 儒</div>
+            <div class="tag">Brand · Content · AIGC</div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">01 — Education</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">杭州电子科技大学</h3>
+            <div class="s-sub">会计学 · 本科 · 2023.09 — 2027.06</div>
+
+            <div class="s-figures">
+              <div class="s-fig">
+                <div class="num">4.5<i>/5.0</i></div>
+                <div class="lbl">GPA</div>
+                <div class="dsc">学术表现稳定，专业基础扎实</div>
+              </div>
+              <div class="s-fig">
+                <div class="num">4<i>/37</i></div>
+                <div class="lbl">Rank</div>
+                <div class="dsc">专业排名前列</div>
+              </div>
+              <div class="s-fig">
+                <div class="num">9<i>门</i></div>
+                <div class="lbl">ACCA</div>
+                <div class="dsc">已通过，财务与数据训练完整</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">02 — Internship</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">owocare · 品牌渠道运营</h3>
+            <div class="s-sub">2026.07 — 2026.10 · 快团团 / 微信私域 / 线下渠道</div>
+
+            <ul class="s-list">
+              <li><span>Brand</span>负责宠物用品品牌在快团团及微信私域的日常运营，涵盖选品、种草内容策划、社群互动与售后履约。</li>
+              <li><span>Growth</span>主导新品及爆品打造、节日营销与日常团购活动，推动用户增长、转化率与复购率提升。</li>
+              <li><span>Offline</span>拓展并维护宠物店、宠物医院、社区团长等线下渠道，推进合作洽谈、样品铺设与联合活动。</li>
+              <li><span>Data</span>搭建运营数据追踪与复盘体系，运用 AI 工具提升内容产出与复盘效率。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">03 — Highlight Project</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">AIGC 创新大赛 <em>一等奖</em></h3>
+            <div class="s-sub">1 / 37 · 生物朋克暗黑美学 · 游戏世界观设定集</div>
+
+            <ul class="s-list">
+              <li><span>Insight</span>切中硬核玩家对生物朋克暗黑美学的渴求，0–1 打造游戏世界观设定集。</li>
+              <li><span>Prompt</span>160+ 组调试打磨出一套稳定生成方法，画面达到游戏截图质感。</li>
+              <li><span>Narrative</span>AI 生成动态分镜视频，零台词纯靠画面讲清文明兴衰，观众自发脑补世界观。</li>
+              <li><span>Impact</span>核心物料 48 小时自发转发 200+ 次，凭极致风格夺冠。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">04 — Campus Events</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">校艺术团 · 导演部负责人</h3>
+            <div class="s-sub">2023.09 — 至今 · 策划与创意方向</div>
+
+            <div class="s-cols">
+              <div class="s-col-a">
+                <p class="s-body" style="margin-top:0;">
+                  从 0 到 1 主导策划校园大型品牌活动，独立完成创意构思、故事线设计与全流程统筹，
+                  把活动做成可被记住、可被传播的品牌体验。
+                </p>
+              </div>
+              <aside class="s-col-b">
+                <div class="t">Key Figures</div>
+                <ul>
+                  <li>20+ 场大型活动</li>
+                  <li>50,000+ 人次触达</li>
+                  <li>参与率 +35%</li>
+                  <li>曝光量月均 +40%</li>
+                  <li>15 人跨职能团队</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">05 — Content Growth</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">自媒体 · 内容创作者</h3>
+            <div class="s-sub">2024.01 — 至今 · 个人 IP 孵化</div>
+
+            <div class="s-figures">
+              <div class="s-fig">
+                <div class="num">500<i>K+</i></div>
+                <div class="lbl">Top Reads</div>
+                <div class="dsc">单篇图文最高阅读量</div>
+              </div>
+              <div class="s-fig">
+                <div class="num">50<i>%+</i></div>
+                <div class="lbl">Engagement</div>
+                <div class="dsc">平均互动率</div>
+              </div>
+              <div class="s-fig">
+                <div class="num">30<i>%</i></div>
+                <div class="lbl">Growth</div>
+                <div class="dsc">3 个月内粉丝增长</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide s-cover">
+          <div class="slide-in">
+            <div class="s-kicker" style="letter-spacing:.4em;">Let's Work Together</div>
+            <div class="big" style="font-size:calc(var(--u)*5.6);margin-top:calc(var(--u)*2.6);">Alexandra Chen</div>
+            <div class="s-rule" style="margin:calc(var(--u)*2.6) auto;"></div>
+            <div class="tag" style="letter-spacing:.2em;line-height:2;">
+              +86 13806865691<br>
+              1638560849@qq.com<br>
+              alexandra-chen-netizen.github.io/rue.github.io
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="deck-bar">
+        <button class="d-btn" id="dPrev" type="button" aria-label="上一页">‹</button>
+        <button class="d-btn" id="dNext" type="button" aria-label="下一页">›</button>
+        <div class="d-dots" id="dDots"></div>
+        <span class="d-count" id="dCount">1 / 7</span>
+        <button class="d-btn" id="dFull" type="button" aria-label="全屏演示" style="margin-left:10px;">⛶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CAMPAIGN · SEPHORA ============================ -->
+<section class="section" id="campaign">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">05</div>
+      <h2 class="sec-title">
+        Campaign Case
+        <small>案例节选 · SEPHORA 2025 美妆节</small>
+      </h2>
+    </div>
+
+    <div class="deck reveal" id="campaignBox">
+      <div class="deck-stage">
+
+        <section class="slide s-cover on">
+          <div class="slide-in">
+            <div class="brand">SEPHORA</div>
+            <div class="big">Beauty Without Borders</div>
+            <div class="cn">2025 美 妆 节</div>
+            <div class="tag">Play · Connect · Create — No Limits</div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Big Idea · 01</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">Beauty Without Borders</h3>
+            <div class="s-sub">Play, Connect, Create — No Limits</div>
+
+            <p class="s-body">
+              SEPHORiA has evolved from a beauty fair into a global cultural crossroads.
+              In 2025, we move beyond “funhouse” to a deeper truth: consumers crave not just
+              products, but emotional connections that transcend geography, age, and aesthetic
+              norms. “Beauty Without Borders” celebrates diversity in three dimensions —
+              geography (global cities), aesthetics (heritage + indie + mass), and
+              self-expression (beauty as a personal language). It turns SEPHORiA into a
+              trusted cultural stage where every attendee feels seen, heard and valued.
+            </p>
+
+            <div class="s-tags">
+              <span>Geography · 全球城市</span>
+              <span>Aesthetics · 传承 + 独立 + 大众</span>
+              <span>Self-expression · 美作为个人语言</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Big Idea · 02</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">The Beauty Passport</h3>
+            <div class="s-sub">5 座城市 · 5 枚印章 · 一次全球探索</div>
+
+            <div class="s-cols">
+              <div class="s-col-a">
+                <p class="s-body" style="margin-top:0;">
+                  Every guest receives a physical + digital passport featuring 5 global city
+                  “chapters” — Shanghai, Paris, Tokyo, NYC, Rio. Each chapter hosts an
+                  immersive zone with a unique beauty ritual (e.g., Shanghai — Eastern
+                  contouring masterclass; Paris — bespoke fragrance blending).
+                </p>
+                <p class="s-body">
+                  Complete each task to earn a city stamp + a digital NFT badge. Collect all 5
+                  to unlock an exclusive global-edition gift box and lifetime membership in the
+                  “SEPHORIA Global Travellers” community.
+                </p>
+
+                <div class="s-tags">
+                  <span>上海</span>
+                  <span>PARIS</span>
+                  <span>TOKYO</span>
+                  <span>NYC</span>
+                  <span>RIO</span>
+                </div>
+              </div>
+
+              <aside class="s-col-b">
+                <div class="t">Why it works</div>
+                <ul>
+                  <li>The Passport is not a gimmick — it is an action-based journey.</li>
+                  <li>Drives organic UGC</li>
+                  <li>Builds a sense of belonging</li>
+                  <li>Creates a lasting trust loop between brand &amp; community</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="deck-bar">
+        <button class="d-btn" id="cPrev" type="button" aria-label="上一页">‹</button>
+        <button class="d-btn" id="cNext" type="button" aria-label="下一页">›</button>
+        <div class="d-dots" id="cDots"></div>
+        <span class="d-count" id="cCount">1 / 3</span>
+        <button class="d-btn" id="cFull" type="button" aria-label="全屏演示" style="margin-left:10px;">⛶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ COMPETITION · JHC 商赛 ============================ -->
+<section class="section" id="competition">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">06</div>
+      <h2 class="sec-title">
+        Business Competition
+        <small>商赛案例分析 · JHC 2026 Final</small>
+      </h2>
+    </div>
+
+    <div class="deck green reveal" id="compBox">
+      <div class="deck-stage">
+
+        <section class="slide s-cover on">
+          <div class="slide-in">
+            <div class="brand">JHC 2026 · Final Competition</div>
+            <div class="big">Green Carbon Intelligence</div>
+            <div class="cn">宁 波 · 战略规划报告</div>
+            <div class="tag">How to bridge short-term financial logic<br>and long-term ESG value in AI-driven energy projects?</div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Table of Contents</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">四大任务 · 一条主线</h3>
+            <div class="s-sub">从矛盾识别，到财务可行性，再到竞争壁垒与五年路径</div>
+
+            <ul class="s-list">
+              <li><span>Task I</span>短期财务逻辑与长期 ESG 价值的根本矛盾 —— 根因与决策障碍</li>
+              <li><span>Task II</span>典型项目的财务分析、现金流风险与商业模式创新</li>
+              <li><span>Task III</span>竞争格局与差异化竞争力</li>
+              <li><span>Task IV</span>五年业务发展模型与组织演进蓝图</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task I · Root Cause</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">不是客户冷漠，也不是技术不足</h3>
+            <div class="s-sub">核心结论：会计准则与投资评估逻辑共同构成客户决策的首要障碍</div>
+
+            <div class="s-cols">
+              <div class="s-col-a">
+                <p class="s-body" style="margin-top:0;">
+                  <strong style="color:#faf8f4;">Angle 1 · 会计视角：</strong>
+                  算法、数据采集、传感器等前期投入被确认为当期费用或长期摊销，直接压缩客户短期利润；
+                  而 ESG 收益属于表外无形收益，无法在利润表上量化。成本即期落地、收益长期隐形，
+                  这种财务报表面貌错配会在审批环节直接扼杀项目。
+                </p>
+                <p class="s-body">
+                  <strong style="color:#faf8f4;">Angle 2 · 折现率与回收期：</strong>
+                  客户以 1–2 年回收期、6%–10% 高折现率筛选非核心资本开支项目；
+                  而 AI 能效项目前期投入集中，节能效果需待模型收敛（第 3 年起）才显现。
+                  高折现率下，后端收益的 NPV 被大幅压缩，短期财务评估中项目吸引力不足。
+                </p>
+              </div>
+              <aside class="s-col-b">
+                <div class="t">Key Contrast</div>
+                <ul>
+                  <li>成本：即期入账</li>
+                  <li>收益：表外长期隐形</li>
+                  <li>回收期：1–2 年</li>
+                  <li>折现率：6%–10%</li>
+                  <li>节能显现：第 3 年起</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task I · Strategic Response</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">风险、激励与企业五维重构</h3>
+            <div class="s-sub">从销售、商业模式到风险共担，系统性拆解决策壁垒</div>
+
+            <ul class="s-list">
+              <li><span>Angle 3</span>技术与政策不确定性：AI 节能效果高度依赖客户数据质量与运行条件，形成“技术黑箱”顾虑；ESG 评级标准、碳价与绿电政策持续波动，长期收益被视为“不确定”。</li>
+              <li><span>Angle 4</span>绩效与激励错配：客户内部 KPI 以利润、ROE、现金流为核心，前期投入拖累当期表现；缺乏 ESG 挂钩的中长期激励，执行层主动放弃高价值项目。</li>
+              <li><span>重构 01</span>销售转型 —— 将财务价值衡量前置，首次沟通即明确回收期与 NPV，配备测算工具与可视化 ROI 演示。</li>
+              <li><span>重构 02</span>商业模式 —— 从纯项目制转向 SaaS 订阅规模化，并设计模块化采购等低成本实施选项。</li>
+              <li><span>重构 03</span>风险共担 —— 主动在合同中加入担保条款（如目标未达可减免 50% 服务费），同时审慎控制敞口。</li>
+              <li><span>重构 04–05</span>标杆案例 + 差异化沟通 —— 打造旗舰灯塔客户并引入第三方验证；针对财务、管理层不同诉求输出定制化沟通语言。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task II · Financial Overview</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">项目财务与现金流结构</h3>
+            <div class="s-sub">合同收入 ¥5,000k · 总成本 ¥3,900k · 净利率 16.5%</div>
+
+            <div class="s-figures">
+              <div class="s-fig">
+                <div class="num">5,000<i>k</i></div>
+                <div class="lbl">Contract Revenue</div>
+                <div class="dsc">合同收入</div>
+              </div>
+              <div class="s-fig">
+                <div class="num">1,100<i>k</i></div>
+                <div class="lbl">PBT · 22%</div>
+                <div class="dsc">税前利润</div>
+              </div>
+              <div class="s-fig">
+                <div class="num">825<i>k</i></div>
+                <div class="lbl">NPAT · 16.5%</div>
+                <div class="dsc">税后净利润（所得税 25%）</div>
+              </div>
+            </div>
+
+            <ul class="s-list">
+              <li><span>Cost Profile</span>成本在 8 个月内均匀发生，月均约 ¥487.5k，总成本 ¥3,900k。</li>
+              <li><span>Collection</span>分期收款机制 Q1 40% → Q2 30% → Q3 30%。</li>
+              <li><span>Q1 / Q2 / Q3</span>季度净现金流 +537.5k / +37.5k / +525k，Q2 现金流偏薄，垫资风险突出。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task II · Cash Flow Risk &amp; Mitigation</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">四类风险 · 五条对策</h3>
+
+            <div class="s-cols">
+              <div class="s-col-a">
+                <ul class="s-list" style="margin-top:0;">
+                  <li><span>Risk 01</span>延期收款：中期进度款延迟将直接冲击本就脆弱的 Q2 现金流。</li>
+                  <li><span>Risk 02</span>刚性成本：成本按月固定发生，而收款集中于 1 / 4 / 8 月，形成错配；并行项目会放大垫资压力。</li>
+                  <li><span>Risk 03</span>验收不确定：多阶段、长周期验收易延迟或失败，根因是交付标准未达与验收口径模糊。</li>
+                  <li><span>Risk 04</span>现金流波动：季度资金分布不均，干扰整体规划与集中调配。</li>
+                </ul>
+              </div>
+              <aside class="s-col-b">
+                <div class="t">Mitigation</div>
+                <ul>
+                  <li>合同优化：明确里程碑验收标准与逾期罚则</li>
+                  <li>成本管控：按月预测固定成本，提前预拨</li>
+                  <li>动态预警：滚动月度现金流预测模型</li>
+                  <li>资金缓冲：计提净利润 15%–20% 作为专项储备</li>
+                  <li>备用融资：与银行建立循环授信额度</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task II · Business Model Comparison</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">Milestone vs. EMC · 混合模式探索</h3>
+            <div class="s-sub">里程碑回款快、风险低；EMC 门槛低、资金压力高</div>
+
+            <ul class="s-list">
+              <li><span>Milestone</span>优势：回款快、缓解资金压力，收入确定、项目风险可控，合作周期短、资金周转效率高。</li>
+              <li><span>Milestone</span>劣势：客户前期投入高、决策门槛高、获客难；交付即结束、粘性低、长期收入有限。</li>
+              <li><span>EMC</span>优势：客户零前期投入、决策门槛低、市场接受度高；长期锁定客户，可延伸增值服务；契合绿色节能趋势。</li>
+              <li><span>EMC</span>挑战：需全额垫资、资金占用压力大；周期 5–10 年、回本慢；收入与节能表现绑定，需承担运维风险。</li>
+              <li><span>Hybrid</span>“里程碑付款 + 节能收益分成”混合模式：客户低门槛、企业收益灵活。计划于 Y2 下半年试点 3–5 家优质客户，单项目上限 200 万元，严格风控。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task III · External Landscape</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">政策驱动 · 市场需求 · 客户痛点</h3>
+            <div class="s-sub">市场需要的不是单一技术，而是“能效优化 + 碳合规”的整合方案</div>
+
+            <ul class="s-list">
+              <li><span>Policy</span>2025 年中国全国碳市场加速发展，覆盖排放量新增约 30 亿吨，高耗能行业加快节能升级。</li>
+              <li><span>Market</span>全球 AI 能效工具市场以约 34.1% 的 CAGR 增长，预计 2034 年规模达 1,636 亿美元；行业处于成长期。</li>
+              <li><span>Pressure</span>ESG 监管趋严，欧盟 CBAM 机制要求出口企业证明碳合规，形成一批高紧迫性的潜在客户。</li>
+              <li><span>Pain 01</span>短期敏感：客户以 1–2 年回收期为基准，低估 AI 模型的长期价值。</li>
+              <li><span>Pain 02</span>合规焦虑：ESG 报告与 CBAM 合规流程复杂，客户难以起步。</li>
+              <li><span>Pain 03</span>信任不确定：AI 模型表现依赖客户数据质量与设备状况，客户存在信任顾虑。</li>
+              <li><span>Gap</span>竞争者盲区：工业巨头偏硬件、能源企业偏投资运营、AI SaaS 缺工程经验、传统集成商缺 AI 与数字化能力 —— 无人同时具备“AI + 工程 + 合规”三项能力。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task III · Internal &amp; Differentiation</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">三引擎优势 <em>×</em> 三重差异化</h3>
+
+            <div class="s-cols">
+              <div class="s-col-a">
+                <p class="s-body" style="margin-top:0;">
+                  <strong style="color:#faf8f4;">内部优势：</strong>
+                  跨学科团队（AI 算法 + 能源系统工程 + 信息管理），具备“AI + 工程 + ESG”一体化交付基础；
+                  端到端服务链覆盖碳盘查、LCA、ESG 报告、CBAM 申报、碳交易咨询与绿色金融；
+                  扁平化决策机制使其能快速响应政策与客户需求变化。
+                </p>
+                <p class="s-body">
+                  <strong style="color:#faf8f4;">内部劣势：</strong>
+                  品牌知名度低、交付周期长（年交付 6–8 个项目、周期 6–12 个月）、
+                  资金支持不足（缺乏经常性收入与头部对手的资金纵深）。
+                </p>
+              </div>
+              <aside class="s-col-b">
+                <div class="t">Differentiation</div>
+                <ul>
+                  <li>技术领先：自研 AI 算法 + 数字孪生 + 智能控制平台，验证节能率 10%–30%</li>
+                  <li>端到端闭环：碳盘查 → LCA → ESG 报告 → CBAM 申报 → 碳交易 → 绿色金融</li>
+                  <li>敏捷响应：初创短决策链，快速定制技术方案与内容</li>
+                  <li>可验证交付：数据采集 → AI 优化 → 效果验证 → 合规报告，全链路可追溯</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task IV · Five-Year Blueprint</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">从项目驱动到平台驱动</h3>
+            <div class="s-sub">从“卖工程”转向“卖服务 + 数据 + 碳资产” · 五年从 5,000 万到 2.5 亿</div>
+
+            <ul class="s-list">
+              <li><span>Vision</span>成为 AI 驱动的企业级碳资产与能源运营管家。</li>
+              <li><span>Mission</span>智慧能源管理，惠及千万企业。</li>
+              <li><span>Values</span>科技向善 · 与客户共创 · 数据驱动。</li>
+              <li><span>Business Model</span>项目制（65%）→ SaaS + DaaS + 碳资产运营。</li>
+              <li><span>Revenue Mix</span>一次性收入为主 → 经常性收入（ARR）占比 &gt; 40%。</li>
+              <li><span>Delivery</span>交付周期从 6–12 个月压缩至 3–6 个月。</li>
+              <li><span>Positioning</span>技术方案提供商 → 碳资产与能源运营管家。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task IV · Product Matrix &amp; Financial Targets</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">四级产品阶梯 · 混合模式驱动</h3>
+
+            <ul class="s-list">
+              <li><span>L1</span>能效体检工具 · SaaS 自助 · 按次 / 年费 · ¥5,000 – 30,000</li>
+              <li><span>L2</span>场景模块（园区包 / 制造包）· 标准软件 · 年订阅 · ¥50,000 – 200,000 / 模块 / 年</li>
+              <li><span>L3</span>综合能效平台 · 完整平台 · 实施费 + 年费 · 实施 ¥30 万 – 100 万，年费 ¥20 万 – 50 万</li>
+              <li><span>L4</span>碳资产运营（“碳管家”）· 托管服务 · 节能收益分成 · 10% – 20%</li>
+              <li><span>Hybrid</span>30% 首付 + 30% 进度款 + 20% 未来节能分成（3–5 年）+ 20% 终验款；Y2 下半年小额试点。</li>
+              <li><span>Evolution</span>Y1–Y2（70% 项目 + 30% 订阅）→ Y3（50% + 40% + 10% 分成）→ Y4–Y5（40% 订阅 + 30% 分成 + 30% 项目）。</li>
+              <li><span>Revenue</span>Y0 ¥50M → Y1 ¥65M（+30%）→ Y2 ¥85M（+31%）→ Y3 ¥115M（+35%）→ Y4 ¥160M（+39%）→ Y5 ¥250M（+56%）。</li>
+              <li><span>Quality</span>项目周期 8 → 3 个月；订阅占比 10% → 40%；毛利率 40% → 55%；净利率 10% → 22%。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Task IV · Four Core Capabilities</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">四大引擎 · 支撑战略落地</h3>
+            <div class="s-sub">标准化交付 · 资金管理 · 销售能力 · 数据合规</div>
+
+            <ul class="s-list">
+              <li><span>Delivery</span>标准化交付：项目周期 ≤ 6 个月 —— 构建“算法武器库”，模块化封装。目标完成：Y2 末。</li>
+              <li><span>Capital</span>资金管理：应收周转 ≤ 90 天 —— 项目风险分级，接入绿色金融。目标完成：Y2 末。</li>
+              <li><span>Sales</span>销售能力：人均年合同额 ¥500 万 —— 转向顾问式销售，配备 ROI 模拟器。目标完成：Y2 末。</li>
+              <li><span>Compliance</span>数据合规：取得首个海外认证 —— 引入合规专家，建立数据隔离体系。目标完成：Y3。</li>
+              <li><span>Talent</span>研发投入 15%–18%；引入 ESG 精算师与合规专家；建立“铁三角”决策机制；一键 CBAM 报告。</li>
+              <li><span>Sales Upgrade</span>三大痛点：卖工程而非价值、客户画像不清、过度依赖技术。五条路径：认知重塑、数字工具、技术转销售人才、客户分级、激励。</li>
+              <li><span>Y2 Target</span>技术陪同拜访 80% → 30%；月新增订阅 5–8 单；人均合同额 ¥300 万 → ¥500 万。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Conclusion &amp; Outlook</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">让每一度电更高效<br>让每一吨碳更有价值</h3>
+
+            <ul class="s-list">
+              <li><span>矛盾</span>客户短期财务聚焦 vs. AI / ESG 长期价值创造 —— 需通过财务价值驱动销售、SaaS 转型与混合模式创新破解。</li>
+              <li><span>壁垒</span>“AI + 能源工程 + ESG 咨询”三位一体 —— 六类竞争者中唯一提供技术实施、合规与管理闭环方案的供应商。</li>
+              <li><span>路径</span>从项目驱动到平台驱动；四级产品阶梯 L1–L4；收入结构从一次性转向 ARR + 分成。</li>
+              <li><span>引擎</span>标准化交付、资金管理、顾问式销售、数据合规 —— 四大能力支撑战略执行。</li>
+              <li><span>愿景</span>成为 AI 驱动的企业级碳资产与能源运营管家，助力千万企业实现零碳转型。</li>
+            </ul>
+
+            <div class="s-tags" style="margin-top:calc(var(--u)*3);">
+              <span>JHC 2026 Final</span>
+              <span>上海-方向班队</span>
+              <span>杭州电子科技大学</span>
+              <span>ACCA 商业小机灵队</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="deck-bar">
+        <button class="d-btn" id="kPrev" type="button" aria-label="上一页">‹</button>
+        <button class="d-btn" id="kNext" type="button" aria-label="下一页">›</button>
+        <div class="d-dots" id="kDots"></div>
+        <span class="d-count" id="kCount">1 / 12</span>
+        <button class="d-btn" id="kFull" type="button" aria-label="全屏演示" style="margin-left:10px;">⛶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SOUL · 苦痛升华之殿 ============================ -->
+<section class="section" id="soul">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">07</div>
+      <h2 class="sec-title">
+        AIGC · Worldbuilding
+        <small>AIGC 设定集 · 苦痛升华之殿</small>
+      </h2>
+    </div>
+
+    <div class="deck gothic reveal" id="soulBox">
+      <div class="deck-stage">
+
+        <section class="slide s-cover on">
+          <div class="slide-in">
+            <div class="brand">Pain Ascension Sanctum</div>
+            <div class="big">苦 痛 升 华 之 殿</div>
+            <div class="cn">生 物 机 械 哥 特 · IP 开 发</div>
+            <div class="tag">血肉苦弱 · 机械飞升 · 痛苦哲学</div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Project Overview</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">一 座 建 在 濒 死 古 神 遗 骸 上 的 文 明</h3>
+
+            <div class="s-quote">
+              “苦和痛，快乐和死亡，都不过是生存的必然进程。”
+              <small>Frida Kahlo · 画家</small>
+            </div>
+
+            <ul class="s-list">
+              <li><span>Type</span>跨媒体 IP（游戏 / 影视 / 艺术设定集）</li>
+              <li><span>Core</span>围绕“血肉苦弱，机械飞升”母题，展开痛苦哲学与飞升路径的终极冲突。</li>
+              <li><span>Opportunity</span>市场对成熟、黑暗、具备哲学深度的幻想题材存在强烈需求 —— 《蔑视》（Scorn）的成功验证了碎片化叙事与强视觉风格的商业潜力。</li>
+              <li><span>Goal</span>前期以艺术设定集与概念预告片确立视觉标杆，中长期开发为叙事驱动的 RPG 或沉浸式互动影游。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Inspiration</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">H.R. 吉 格 尔 <em>·</em> 噩 梦 深 处 的 艺 术 家</h3>
+
+            <div class="s-cols">
+              <div class="s-col-a">
+                <p class="s-body" style="margin-top:0;">
+                  1940 年生于瑞士库尔的吉格尔，孩提时代便以素描缓解反复出现的噩梦与幻觉。
+                  他曾在周日早上独自前往博物馆地下室，站在埃及公主的木乃伊旁 —— 既恐惧又着迷。
+                  父亲从制药公司带回的一具人类头骨，被他用绳子拖过库尔街头。
+                </p>
+                <p class="s-body">
+                  二战期间瑞士紧邻纳粹德国，蓝调灯光下躲避轰炸的童年记忆，成为他作品中黑暗气质的根源。
+                  冷战时期核战争的威胁，促使他将恐惧转化为可以处理的视觉语言。
+                </p>
+                <p class="s-body">
+                  1973 年，他为 Emerson, Lake &amp; Palmer 的《脑沙拉手术》专辑封面绘制了困于钢铁坟墓中的垂死女性；
+                  达利曾在其《死灵之书》封面上专门作画致敬。跨越绘画、电影与工业设计，
+                  其作品共同点始终是 —— <strong style="color:#faf8f4;">生物机械（Biomechanical）</strong>。
+                </p>
+              </div>
+              <aside class="s-col-b">
+                <div class="t">Key References</div>
+                <ul>
+                  <li>H.R. Giger · 异形 Alien</li>
+                  <li>Zdzisław Beksiński · 末世衰败</li>
+                  <li>《蔑视》Scorn · 碎片化叙事</li>
+                  <li>Biomechanical · 有机机械</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Worldbuilding · History</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">从 寄 生 到 分 歧</h3>
+            <div class="s-sub">一段关于痛苦、觉醒与分裂的文明史</div>
+
+            <ul class="s-list">
+              <li><span>Era 01</span>发现与寄生 —— 后世文明“寻迹者”的祖先，在虚空中发现漂浮的、近乎永恒的古神遗骸。他们最初只是在其骨骼庇护所与血管能源河中寄生，如同藤壶附着于鲸鱼。</li>
+              <li><span>Era 02</span>“痛苦即力量”的觉醒 —— 一次偶然事故，让一位先驱者将神经接入了古神的痛苦神经束。他没有疯掉，反而从中感知到宇宙真理与无穷能量 —— 由此，“痛苦哲学”诞生。</li>
+              <li><span>Era 03</span>大分裂 —— 社会理念发生严重分裂：融合派尊崇先驱为“受肉先知”，认为与血肉和谐共生才是正道；纯净派奉行“清净尊者”为导师，在极端痛苦中将自己完全机械化以寻求宁静。</li>
+              <li><span>Era 04</span>永恒战争 —— 两派冲突从哲学辩论演变为社会结构、技术路线与生存形态的彻底分离，战争在圣殿的血管、回廊与废弃器官中持续进行。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Worldbuilding · Societies</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">共 生 城 邦 <em>×</em> 净 蚀 堡 垒</h3>
+            <div class="s-sub">两种社会形态，两种对痛苦的回答</div>
+
+            <div class="s-dual">
+              <div>
+                <div class="dt">融合派 · 共生城邦</div>
+                <p>
+                  以“神经节点”为中心建立的城邦，社会阶层由与“圣骸”的连接深度决定。
+                  最高统治者是“枢机主教”，与主神经束直接共生，身体大部分已圣骸化。
+                  公民在成年礼上会接受第一次机械植入，通常替换一只眼睛或一条手臂。
+                  食物是富含营养的“活液”，从公共血管中汲取。艺术形式表现为“痛苦交响乐”与“生长雕塑”。
+                </p>
+              </div>
+              <div>
+                <div class="dt">纯净派 · 净蚀堡垒</div>
+                <p>
+                  一个高度集权、效率至上的蜂巢社会，位于从圣骸中“净化”出的纯金属区域内。
+                  领袖是“逻辑中枢”，由历代领袖意识融合而成的 AI。
+                  个体从诞生起就是培养槽中制造的、植入基础意识的机械体，通过数据流接收指令。
+                  没有家庭，只有单位与任务；视情感与痛苦为系统错误，会定期进行“碎片清理”。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Worldbuilding · Technology</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">生 体 铸 艺 <em>×</em> 无 情 掠 取</h3>
+            <div class="s-sub">两条飞升路径，一个共同禁忌</div>
+
+            <ul class="s-list">
+              <li><span>融合派</span>生体铸艺 —— 技术核心是引导、培育和嫁接生物组织，工具本身即是活性的：能溶解金属的“蚀铁菌”、能缝合伤口或电路的“缝合触须”。</li>
+              <li><span>融合派</span>飞升路径：圣骸化 —— 一个渐进的过程，不断用更强大、更古老的圣骸组织替换自身血肉，最终目标是成为圣殿神经系统的一个永久节点，与古神一同“思考”。</li>
+              <li><span>纯净派</span>无情掠取 —— 剥离、萃取和格式化：从圣骸中提取生物质作为原材料，提取神经信号作为数据，并将“痛苦能量”转化为纯粹的电力。</li>
+              <li><span>纯净派</span>飞升路径：意识上传 —— 将意识从生物脑中彻底剥离，上传至“集体意识网络”，获得数字永生。最恐惧的是上传过程中残留的“痛苦印记”。</li>
+              <li><span>禁忌</span>神经织网 —— 两派共用的底层技术，最高级应用是直接“骇入”圣骸殿的神经系统，暂时控制某一区域的生物机能；但极其危险，可能被古神残留的意识反噬，成为无意识的“神经奴仆”。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Worldbuilding · Conflict</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">永 恒 战 争 <em>·</em> 古 神 的 秘 密</h3>
+
+            <ul class="s-list">
+              <li><span>War</span>融合派视纯净派为“弑亲的逆子”，在亵渎共同的“母亲”圣骸；纯净派则视融合派为“沉溺于痛苦的蛆虫”，是需要被“净化”的落后存在。</li>
+              <li><span>Secret 01</span>古神真的死了吗？有迹象表明，其意识可能只是沉睡，或者其“痛苦”本身就是一种超越理解的沟通方式。</li>
+              <li><span>Secret 02</span>古神为何受伤？那场导致它濒死的远古战争，对手是谁？是否还会卷土重来？</li>
+              <li><span>Secret 03</span>飞升的终点：融合派最终会成为古神复活的温床吗？纯净派的意识网络，是否只是另一个形式的、由古神梦境构成的牢笼？</li>
+              <li><span>Third Force</span>回归派 —— 一小撮秘密的异端分子，认为所有扭曲都始于对古神的寄生。他们寻求治愈古神，或在飞升之路上找到一种与古神“和谐共鸣”而非利用或剥离的道路 —— 被两派共同视为敌人。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">AI Pipeline · Phase 01</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">核 心 风 格 定 调</h3>
+            <div class="s-sub">从泛泛的氛围图，到具有独特视觉符号的“圣骸殿”</div>
+
+            <ul class="s-list">
+              <li><span>初版</span>interior of a bio-mechanical cathedral, flesh and metal, dark fantasy —— 结果过于泛泛，缺乏独特性与氛围。</li>
+              <li><span>优化</span>引入艺术家人名与更具体的环境描述：融合骨、肌肉组织、脉动血管结构；脊柱状廊柱、肋骨状拱门；生物孢囊提供冷光。</li>
+              <li><span>终版</span>epic wide shot of the interior of a bio-mechanical gothic cathedral, walls made of pulsating muscle fiber and fused bone, giant pulsating vascular conduits, bioluminescent sap, in the style of H.R. Giger and Zdzislaw Beksiński, architectural horror, dark and oppressive. <em style="color:#d97368;font-style:normal;">--ar 16:9 --s 250 --style raw</em></li>
+              <li><span>参数</span>--ar 16:9 设定电影画幅；--s 250 提高风格化程度；--style raw 获得更写真、更少 AI 修饰的效果。</li>
+              <li><span>筛选</span>从生成批次中挑选最具代表性、氛围最压抑、且有机与无机元素结合最巧妙的图片作为视觉基石。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">AI Pipeline · Phase 02</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">关 键 元 素 设 计</h3>
+            <div class="s-sub">角色 · 场景 · 道具 —— 两大阵营的视觉符号</div>
+
+            <ul class="s-list">
+              <li><span>融合派</span>初版：人形在实验室中，左臂全机械、右臂过度发达的生化肌肉，胸腔敞开，跳动的心脏与嗡嗡作响的机械泵机共生 —— 体现血肉与钢铁的残酷融合。</li>
+              <li><span>融合派</span>迭代重点：人物更恐怖、血肉模糊且腐烂，机械呈现锈迹斑斑且向血肉融合的迹象；背景要有血肉墙壁与湿润黏滑质感。</li>
+              <li><span>融合派</span>终版：A Fusionist bio-augmentation chamber, a humanoid figure on an organic operating slab, mechanical surgical arms and fleshy tendrils working on its exposed spine, integrating metallic components with nerve bundles, hyper-realistic, gritty details, cinematic lighting, inspired by Scorn game. <em style="color:#d97368;font-style:normal;">--ar 4:3 --s 300</em></li>
+              <li><span>纯净派</span>初版：身处由有机肉壁改造而成的冰冷金属廊道，流线型机械躯壳与蠕动生物环境形成尖锐对比，光滑面罩上只有一道红色传感器光芒。</li>
+              <li><span>纯净派</span>迭代重点：仿生人的皮肤金属质感；背景机械血肉混杂且机械呈现骨骼脉络；整体氛围偏恐怖；面部要有类人的五官。</li>
+              <li><span>纯净派</span>终版：A Purist ascension ritual, a human brain being extracted from a skeletal body by precise robotic arms, transferring it into a sleek chromed chassis, the scene is sterile and cold, symbolic of rejecting the flesh, cyberpunk horror. <em style="color:#d97368;font-style:normal;">--ar 16:9 --s 200</em></li>
+              <li><span>筛选</span>叙事性：图片本身是否能讲述一个故事？阵营辨识度：是否能一眼区分融合派与纯净派？技术可行性：设计是否过于复杂，能否为后续 3D 建模提供清晰参考？</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">AI Pipeline · Phase 03</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">动 态 化 与 氛 围 营 造</h3>
+            <div class="s-sub">从静态概念到动态分镜，测试视觉语言的叙事能力</div>
+
+            <ul class="s-list">
+              <li><span>Approach</span>使用 Sora 2 等工具，为核心静态图生成 3–5 秒的动态效果。</li>
+              <li><span>Prompt</span>Image from Phase 2, cinematic slow pan, organic pulsating, steam rising, eerie atmosphere — movement subtle.</li>
+              <li><span>Filter</span>选择动态效果增强了场景压迫感和沉浸感、而非分散注意力的版本。</li>
+              <li><span>Scene 01</span>飞升祭坛 —— “手术台”与“宗教祭坛”的恐怖融合：类人形体被活体触手束缚在金属板上，上方既有精密机械手术臂，也有带着注射器的有机触须正准备进行改造。</li>
+              <li><span>Scene 02</span>两派战争瞬间 —— 巨型心脏腔室内，融合派以骨与肌肉制成的生物机械武器发射生物等离子，纯净派穿着映照畸形环境的流线型装甲，光爆与内脏飞溅。</li>
+              <li><span>Scene 03</span>被遗忘的“壳”之墓园 —— 被抛弃的“壳”的堆叠：枯萎的生物四肢、裂开的机械底盘、一个在罐中发着微光的裸露大脑，连接着断裂的电线，深影、忧郁与恐怖。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="slide-in">
+            <div class="s-kicker">Team &amp; Innovation</div>
+            <div class="s-rule"></div>
+            <h3 class="s-title">团 队 分 工 <em>×</em> 创 新 价 值</h3>
+
+            <div class="s-cols">
+              <div class="s-col-a">
+                <ul class="s-list" style="margin-top:0;">
+                  <li><span>架构</span>世界架构 —— 负责世界观顶层设计、哲学内核构建、项目进度管理与资源协调。</li>
+                  <li><span>AI</span>AI 视觉导演（1–2 人）—— 核心职责：Prompt 工程策略制定、撰写、迭代优化，以及海量生成结果的筛选、归类和标签化管理。</li>
+                  <li><span>叙事</span>叙事设计师（1 人）—— 与视觉导演紧密合作，基于优质图像挖掘并完善背景故事、角色设定与任务线索。</li>
+                  <li><span>3D</span>3D 美术师（1 人，后期介入）—— 在概念阶段提供技术反馈，概念确定后负责将关键 AI 概念图转化为高精度 3D 模型或场景样板。</li>
+                </ul>
+              </div>
+              <aside class="s-col-b">
+                <div class="t">Innovation</div>
+                <ul>
+                  <li>哲学 × 美学深度绑定：将“痛苦”转化为驱动世界运转的具象能量与核心矛盾。</li>
+                  <li>AI 驱动的概念开发流水线：从“文字世界观”到“高质量视觉资产”的系统化转化方法。</li>
+                  <li>强冲突叙事框架：融合派与纯净派超越简单善恶二元对立。</li>
+                  <li>商业与艺术价值并存：填补高风格化、成人向、深度叙事内容的空缺。</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide s-cover">
+          <div class="slide-in">
+            <div class="s-kicker" style="letter-spacing:.4em;">Roadmap</div>
+            <div class="big" style="font-size:calc(var(--u)*6.4);margin-top:calc(var(--u)*2.4);line-height:1.05;">
+              苦 痛 升 华 之 殿
+            </div>
+            <div class="s-rule" style="margin:calc(var(--u)*2.6) auto;"></div>
+            <div class="tag" style="letter-spacing:.2em;line-height:2.2;max-width:70%;">
+              <strong style="color:#d97368;">短期</strong> · 完成核心艺术设定集编撰，并制作一部高质量概念预告片<br>
+              <strong style="color:#d97368;">中期</strong> · 开发可玩的垂直切片原型，验证核心玩法与叙事表现<br>
+              <strong style="color:#d97368;">长期</strong> · 寻求与有实力的游戏开发商或制片方合作，打造跨媒体里程碑作品
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="deck-bar">
+        <button class="d-btn" id="sPrev" type="button" aria-label="上一页">‹</button>
+        <button class="d-btn" id="sNext" type="button" aria-label="下一页">›</button>
+        <div class="d-dots" id="sDots"></div>
+        <span class="d-count" id="sCount">1 / 12</span>
+        <button class="d-btn" id="sFull" type="button" aria-label="全屏演示" style="margin-left:10px;">⛶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">08</div>
+      <h2 class="sec-title">
+        Get in Touch
+        <small>联系 · 合作 · 机会</small>
+      </h2>
+    </div>
+
+    <div class="contact">
+      <p class="contact-lead reveal">
+        如果你在寻找一位既能<em>理解品牌</em>、又能<em>看懂数据</em>，
+        并且愿意把想法真正推进成结果的人 —— 这里会是一个合适的起点。
+      </p>
+
+      <div class="contact-list reveal">
+        <div class="c-item">
+          <span class="k">Email</span>
+          <a class="v" href="mailto:1638560849@qq.com">1638560849@qq.com</a>
+        </div>
+        <div class="c-item">
+          <span class="k">Phone</span>
+          <a class="v" href="tel:+8613806865691">+86 138 0686 5691</a>
+        </div>
+        <div class="c-item">
+          <span class="k">Website</span>
+          <a class="v" href="https://alexandra-chen-netizen.github.io/rue.github.io/" target="_blank" rel="noopener">alexandra-chen-netizen.github.io</a>
+        </div>
+        <div class="c-item">
+          <span class="k">Location</span>
+          <span class="v">中国 · 可远程 / 可出差</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;">
+    <span>© 2025 Alexandra Chen · 陈则儒</span>
+    <span>Hangzhou Dianzi University · Bachelor of Accounting</span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   1. 滚动渐显
+   ============================================================ */
+(function () {
+  var items = [].slice.call(document.querySelectorAll('.reveal'));
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  items.forEach(function (el) { io.observe(el); });
+})();
+
+/* ============================================================
+   2. 幻灯片通用控制器
+   ============================================================ */
+function initDeck(opts) {
+  var box = document.getElementById(opts.boxId);
+  if (!box) return;
+
+  var stage   = box.querySelector('.deck-stage');
+  var slides  = [].slice.call(box.querySelectorAll('.slide'));
+  var dotsBox = document.getElementById(opts.dotsId);
+  var counter = document.getElementById(opts.countId);
+  var cur = 0, hovering = false;
+
+  function syncUnit() {
+    var w = stage.clientWidth || box.clientWidth || 900;
+    var portrait = window.matchMedia('(max-width: 720px)').matches;
+    box.style.setProperty('--u', (w / 100 * (portrait ? 1.85 : 1)).toFixed(3) + 'px');
+  }
+  if (window.ResizeObserver) {
+    new ResizeObserver(syncUnit).observe(stage);
+  } else {
+    window.addEventListener('resize', syncUnit);
+  }
+  syncUnit();
+
+  slides.forEach(function (_, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'd-dot';
+    b.setAttribute('aria-label', '第 ' + (i + 1) + ' 页');
+    b.addEventListener('click', function () { go(i); });
+    dotsBox.appendChild(b);
+  });
+  var dots = [].slice.call(dotsBox.children);
+
+  function go(i) {
+    cur = (i + slides.length) % slides.length;
+    slides.forEach(function (s, k) {
+      s.classList.toggle('on', k === cur);
+      if (k === cur) s.scrollTop = 0;
+    });
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === cur); });
+    if (counter) counter.textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  go(0);
+
+  document.getElementById(opts.prevId).addEventListener('click', function () { go(cur - 1); });
+  document.getElementById(opts.nextId).addEventListener('click', function () { go(cur + 1); });
+
+  box.addEventListener('mouseenter', function () { hovering = true; });
+  box.addEventListener('mouseleave', function () { hovering = false; });
+
+  document.addEventListener('keydown', function (e) {
+    var fs = document.fullscreenElement || document.webkitFullscreenElement;
+    if (!hovering && !fs) return;
+    if (e.key === 'ArrowLeft')  { go(cur - 1); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { go(cur + 1); e.preventDefault(); }
+  });
+
+  var fullBtn = document.getElementById(opts.fullId);
+  fullBtn.addEventListener('click', function () {
+    var d = document;
+    var fsEl = d.fullscreenElement || d.webkitFullscreenElement;
+    if (fsEl) {
+      (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+    } else {
+      (box.requestFullscreen || box.webkitRequestFullscreen).call(box);
+    }
+  });
+  document.addEventListener('fullscreenchange', function () {
+    var on = !!document.fullscreenElement;
+    fullBtn.textContent = on ? '⤡' : '⛶';
+    setTimeout(syncUnit, 60);
+  });
+
+  var sx = 0, sy = 0;
+  stage.addEventListener('touchstart', function (e) {
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+  }, { passive: true });
+
+  stage.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - sx;
+    var dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+      go(dx < 0 ? cur + 1 : cur - 1);
+    }
+  }, { passive: true });
+}
+
+/* ============================================================
+   3. 初始化四个幻灯片
+   ============================================================ */
+initDeck({
+  boxId:   'deckBox',
+  dotsId:  'dDots',
+  countId: 'dCount',
+  prevId:  'dPrev',
+  nextId:  'dNext',
+  fullId:  'dFull'
+});
+
+initDeck({
+  boxId:   'campaignBox',
+  dotsId:  'cDots',
+  countId: 'cCount',
+  prevId:  'cPrev',
+  nextId:  'cNext',
+  fullId:  'cFull'
+});
+
+initDeck({
+  boxId:   'compBox',
+  dotsId:  'kDots',
+  countId: 'kCount',
+  prevId:  'kPrev',
+  nextId:  'kNext',
+  fullId:  'kFull'
+});
+
+initDeck({
+  boxId:   'soulBox',
+  dotsId:  'sDots',
+  countId: 'sCount',
+  prevId:  'sPrev',
+  nextId:  'sNext',
+  fullId:  'sFull'
+});
+</script>
 </body>
 </html>
